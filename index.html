@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>葉南星的主页</title>
-<link rel="icon" href="https://www.google.com/favicon.ico">
+  <link rel="icon" href="https://www.google.com/favicon.ico">
   <style>
     * {
       margin: 0;
@@ -12,33 +12,53 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      min-height: 100%;
+    }
+
     body {
       font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      background: #eef2f7;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      background-attachment: fixed;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
       padding: 24px 16px;
-      color: #1e2b3c;
+      color: #e8eef7;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 2 L4 18 L8 14 L11 21 L14 20 L11 13 L17 13 Z' fill='black' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 4 2, default;
     }
 
+    /* ===== 背景画布 ===== */
+    #starfield,
+    #meteorfield {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    #starfield { z-index: -2; }
+    #meteorfield { z-index: -1; }
+
+    /* ===== 主卡片：全透明玻璃感 ===== */
     .card {
+      position: relative;
+      z-index: 1;
       max-width: 1100px;
       width: 100%;
-      background: #ffffff;
+      background: transparent;
       border-radius: 36px;
-      box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.25),
-                  0 8px 24px -8px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
+      overflow: visible;
+      box-shadow: none;
     }
 
-    /* 个人资料头部 */
+    /* ===== 个人资料头部 ===== */
     .profile-header {
-      background: linear-gradient(145deg, #f9fbfd 0%, #e9eef4 100%);
+      background: transparent;
       padding: 32px 24px 28px;
       text-align: center;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .avatar-wrapper {
@@ -46,8 +66,8 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 8px 18px rgba(0, 20, 40, 0.12), 0 2px 6px rgba(0,0,0,0.05);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
       padding: 5px;
       margin-bottom: 16px;
       transition: transform 0.25s ease;
@@ -69,27 +89,30 @@
       font-size: 2rem;
       font-weight: 600;
       letter-spacing: 2px;
-      color: #1e2b3c;
+      color: #f2f7ff;
       margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     .profile-name small {
       font-size: 1rem;
       font-weight: 400;
-      color: #4a5f7a;
+      color: #b9c8dc;
       letter-spacing: 1px;
       margin-left: 8px;
     }
 
+    /* ===== 区块标题 ===== */
     .section-title {
       font-size: 1.3rem;
       font-weight: 500;
-      color: #2c3e50;
+      color: #eaf1fb;
       margin: 24px 32px 12px;
       display: flex;
       align-items: center;
       gap: 8px;
       letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     }
 
     .section-title::before {
@@ -97,53 +120,50 @@
       display: inline-block;
       width: 6px;
       height: 24px;
-      background: #4b7bec;
+      background: #6ea8ff;
       border-radius: 4px;
+      box-shadow: 0 0 12px rgba(110, 168, 255, 0.8);
     }
 
-    /* ---------- 5x4 等距网格 ---------- */
+    /* ===== GIF 网格 ===== */
     .gif-grid {
-      background: #f6f9fe;
+      background: transparent;
       margin: 0 20px 8px;
       padding: 24px 20px;
       border-radius: 32px;
-      /* 使用 grid 实现严格的 5 列等距布局 */
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      /* 行间距与列间距完全相等，形成等距 */
       gap: 16px;
-      /* 确保所有单元格等宽等高(高度由内容撑开, 但卡片高度基本一致) */
       align-items: stretch;
       justify-content: stretch;
-      border: 1px solid #e2eaf6;
-      box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 20, 40, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: none;
+      backdrop-filter: blur(2px);
     }
 
-    /* 每个 GIF 卡片：变成 grid item，自动填满单元格 */
     .gif-card {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 22px;
-      box-shadow: 0 6px 14px rgba(0, 20, 40, 0.08), 0 2px 6px rgba(0,0,0,0.02);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
       transition: all 0.2s ease;
       padding: 8px;
-      border: 1px solid rgba(200, 215, 235, 0.4);
-      /* 保证卡片宽度自适应列宽 */
+      border: 1px solid rgba(255, 255, 255, 0.12);
       width: 100%;
       height: 100%;
-      /* 可保持卡片内图片居中 */
-      min-width: 0;   /* 防止溢出 */
+      min-width: 0;
+      backdrop-filter: blur(4px);
     }
 
     .gif-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 16px 24px -8px rgba(40, 80, 140, 0.2), 0 4px 10px rgba(0,0,0,0.05);
-      border-color: #b8d1f0;
+      box-shadow: 0 16px 24px -8px rgba(0, 0, 0, 0.45), 0 4px 10px rgba(0, 0, 0, 0.25);
+      border-color: rgba(140, 190, 255, 0.55);
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    /* 保持原始尺寸，但限制最大宽度防止撑破 */
     .gif-card img {
       display: block;
       width: auto;
@@ -156,20 +176,21 @@
       user-select: none;
       -webkit-user-select: none;
       pointer-events: auto;
-      border-radius: 12px;  /* 稍微圆角让图片更柔和 */
+      border-radius: 12px;
     }
 
-    /* 正文卡片 */
+    /* ===== 正文卡片 ===== */
     .content-card {
-      background: #ffffff;
+      background: transparent;
       margin: 22px 24px 28px;
       padding: 28px 32px;
       border-radius: 28px;
-      box-shadow: 0 4px 14px rgba(0, 20, 40, 0.04), 0 1px 4px rgba(0,0,0,0.02);
-      border: 1px solid #eef3fc;
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       line-height: 1.8;
-      color: #2f4056;
+      color: #dbe6f4;
       font-size: 1rem;
+      backdrop-filter: blur(2px);
     }
 
     .content-card p {
@@ -180,30 +201,42 @@
       margin-bottom: 0;
     }
 
-    /* 页脚 */
+    .content-card a {
+      color: #8ab6e8;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(138, 182, 232, 0.5);
+      transition: all 0.2s;
+    }
+
+    .content-card a:hover {
+      color: #b9d6ff;
+      border-bottom-color: #b9d6ff;
+    }
+
+    /* ===== 页脚 ===== */
     .footer {
       text-align: center;
       padding: 22px 24px 28px;
-      background: #f2f6fc;
-      border-top: 1px solid #dfe9f2;
+      background: transparent;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.9rem;
-      color: #3a4e66;
+      color: #b9c8dc;
       letter-spacing: 0.5px;
     }
 
     .footer a {
-      color: #3b6ea5;
+      color: #8ab6e8;
       text-decoration: none;
       font-weight: 500;
-      border-bottom: 1px dashed #a0b9d6;
+      border-bottom: 1px dashed rgba(138, 182, 232, 0.5);
       transition: all 0.2s;
       padding-bottom: 2px;
       margin-left: 8px;
     }
 
     .footer a:hover {
-      color: #1b3b63;
-      border-bottom-color: #4b7bec;
+      color: #b9d6ff;
+      border-bottom-color: #b9d6ff;
     }
 
     .footer p {
@@ -214,13 +247,13 @@
       display: inline-block;
       width: 4px;
       height: 4px;
-      background: #a0b9d6;
+      background: rgba(185, 200, 220, 0.6);
       border-radius: 50%;
       margin: 0 12px;
       vertical-align: middle;
     }
 
-    /* 响应式：中小屏幕改为4列 / 3列，依然等距 */
+    /* ===== 响应式 ===== */
     @media (max-width: 900px) {
       .gif-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -262,12 +295,17 @@
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;">
+
+  <!-- 背景画布 -->
+  <canvas id="starfield"></canvas>
+  <canvas id="meteorfield"></canvas>
+
   <div class="card">
     <!-- 个人资料区 -->
     <div class="profile-header">
       <div class="avatar-wrapper">
-        <img 
-          src="https://img.nloln.de/v2/MDVYPRl.jpeg" 
+        <img
+          src="https://img.nloln.de/v2/MDVYPRl.jpeg"
           alt="葉南星头像"
           loading="lazy"
           draggable="false"
@@ -275,15 +313,16 @@
         >
       </div>
       <div class="profile-name">
-        葉南星 <small>
+        葉南星 <small></small>
       </div>
     </div>
 
     <!-- 主職業标题 -->
     <div class="section-title">
-      主職業    </div>
+      主職業
+    </div>
 
-    <!-- GIF 网格 —— 使用 grid 布局确保5列4行等距 -->
+    <!-- GIF 网格 -->
     <div class="gif-grid">
       <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/Ty7YJMb.gif" alt="黑暗追击者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -291,7 +330,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/yttkajB.gif" alt="風之潛行者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/bysiQ1j.gif" alt="弧形大师" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/y9T1dDW.gif" alt="暴力大师" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      
+
       <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/mQD00iR.gif" alt="混血天神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/F4va5RM.gif" alt="闇影武士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -313,11 +352,13 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/rWOPnhp.gif" alt="弒魂者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/phITSfy.gif" alt="剑圣" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
- <!-- 副職業标题 -->
-    <div class="section-title">
-      副職業    </div>
 
-    <!-- GIF 网格 —— 使用 grid 布局确保5列4行等距 -->
+    <!-- 副職業标题 -->
+    <div class="section-title">
+      副職業
+    </div>
+
+    <!-- GIF 网格 -->
     <div class="gif-grid">
       <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/4pbSeL6.gif" alt="魂之勇者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -325,7 +366,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/TpffCp6.gif" alt="恐懼騎士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/M401gr2.gif" alt="音樂大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/1U0JSPb.gif" alt="忍者大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      
+
       <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/XsbUGvs.gif" alt="改造大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/KGxSG75.gif" alt="寶石之星" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -336,225 +377,15 @@
       <!-- 第三行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/9YfBpt7.gif" alt="審判者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/DcCwaIs.gif" alt="鬥神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
     </div>
 
-
-
     <!-- 正文内容区 -->
-<div class="content-card">
-  <p>1.</p>
-  <p><a href="https://www.bilibili.com/video/BV1SeMgzEETw/" target="_blank" rel="noopener noreferrer">主線、支線、副職業、外傳流程視頻</a></p>
-  <p>2.</p>
-  <p><a href="https://www.bilibili.com/video/BV1pT6fYyE8b/" target="_blank" rel="noopener noreferrer">改造大師傳奇任務I、II單人視頻</a></p>
-</div>
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>星空 · 动态星与流星</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    background-attachment: fixed;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 2 L4 18 L8 14 L11 21 L14 20 L11 13 L17 13 Z' fill='black' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 4 2, default;
-  }
-
-  #starfield {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  #meteorfield {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-</style>
-</head>
-<body>
-
-<canvas id="starfield"></canvas>
-<canvas id="meteorfield"></canvas>
-
-<script>
-/* ================= 星星模块 ================= */
-const starCanvas = document.getElementById('starfield');
-const starCtx = starCanvas.getContext('2d');
-
-let SW, SH;
-let stars = [];
-const STAR_COUNT = 200;
-
-function resizeStars() {
-  SW = starCanvas.width = window.innerWidth;
-  SH = starCanvas.height = window.innerHeight;
-}
-
-function createStar(randomY = true) {
-  return {
-    x: Math.random() * SW,
-    y: randomY ? Math.random() * SH : -10,
-    r: Math.random() * 1.5 + 0.3,
-    speedY: Math.random() * 0.5 + 0.2,
-    speedX: (Math.random() - 0.5) * 0.3,
-    alpha: Math.random() * 0.5 + 0.5,
-    twinkle: Math.random() * 0.02 + 0.005
-  };
-}
-
-function initStars() {
-  stars = [];
-  for (let i = 0; i < STAR_COUNT; i++) {
-    stars.push(createStar(true));
-  }
-}
-
-function drawStars() {
-  starCtx.clearRect(0, 0, SW, SH);
-
-  for (let i = 0; i < stars.length; i++) {
-    const s = stars[i];
-
-    starCtx.beginPath();
-    starCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    starCtx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
-    starCtx.shadowBlur = 6;
-    starCtx.shadowColor = 'white';
-    starCtx.fill();
-
-    s.y += s.speedY;
-    s.x += s.speedX;
-
-    s.alpha += s.twinkle;
-    if (s.alpha > 1 || s.alpha < 0.3) s.twinkle = -s.twinkle;
-
-    if (s.y > SH + 5) {
-      stars[i] = createStar(false);
-      stars[i].x = Math.random() * SW;
-    }
-    if (s.x < -5) s.x = SW + 5;
-    if (s.x > SW + 5) s.x = -5;
-  }
-
-  starCtx.shadowBlur = 0;
-  requestAnimationFrame(drawStars);
-}
-
-/* ================= 流星模块（向左下角飞 · 密集版） ================= */
-const meteorCanvas = document.getElementById('meteorfield');
-const meteorCtx = meteorCanvas.getContext('2d');
-
-let MW, MH;
-let meteors = [];
-const METEOR_COUNT = 20;      // ← 密集流星：由 6 提升到 20
-
-// 流星飞行的角度（弧度）：向左下约 40°
-const METEOR_ANGLE = Math.PI / 4.5;
-
-function resizeMeteors() {
-  MW = meteorCanvas.width = window.innerWidth;
-  MH = meteorCanvas.height = window.innerHeight;
-}
-
-function createMeteor() {
-  const speed = Math.random() * 3.5 + 2.5; // 速度 2.5~6
-  return {
-    x: MW + Math.random() * 250,
-    y: Math.random() * MH * 0.7 - MH * 0.35,
-    len: Math.random() * 100 + 70,
-    vx: -Math.cos(METEOR_ANGLE) * speed,
-    vy: Math.sin(METEOR_ANGLE) * speed,
-    alpha: Math.random() * 0.5 + 0.4,
-    r: Math.random() * 0.7 + 0.6
-  };
-}
-
-function initMeteors() {
-  meteors = [];
-  for (let i = 0; i < METEOR_COUNT; i++) {
-    const m = createMeteor();
-    // 初始分散在更广的区域，避免全在右上角
-    m.x = Math.random() * MW * 1.2;
-    m.y = Math.random() * MH * 0.9 - MH * 0.2;
-    meteors.push(m);
-  }
-}
-
-function drawMeteors() {
-  meteorCtx.clearRect(0, 0, MW, MH);
-
-  meteors.forEach((m, i) => {
-    // 尾迹朝右上（飞行的反方向）
-    const tailX = m.x + Math.cos(METEOR_ANGLE) * m.len;
-    const tailY = m.y - Math.sin(METEOR_ANGLE) * m.len;
-
-    const grad = meteorCtx.createLinearGradient(m.x, m.y, tailX, tailY);
-    grad.addColorStop(0, `rgba(255, 255, 255, ${m.alpha})`);
-    grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-    meteorCtx.beginPath();
-    meteorCtx.moveTo(m.x, m.y);
-    meteorCtx.lineTo(tailX, tailY);
-    meteorCtx.strokeStyle = grad;
-    meteorCtx.lineWidth = 1.8;
-    meteorCtx.lineCap = 'round';
-    meteorCtx.shadowBlur = 8;
-    meteorCtx.shadowColor = 'white';
-    meteorCtx.stroke();
-
-    // 头部亮点
-    meteorCtx.beginPath();
-    meteorCtx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-    meteorCtx.fillStyle = `rgba(255,255,255,${m.alpha})`;
-    meteorCtx.fill();
-
-    // 向左下移动
-    m.x += m.vx;
-    m.y += m.vy;
-
-    // 移出左边界或下边界后，从右上方重新生成
-    if (m.x < -m.len - 20 || m.y > MH + m.len + 20) {
-      const nm = createMeteor();
-      nm.x = MW + Math.random() * 150;
-      nm.y = Math.random() * MH * 0.5 - MH * 0.3;
-      meteors[i] = nm;
-    }
-  });
-
-  meteorCtx.shadowBlur = 0;
-  requestAnimationFrame(drawMeteors);
-}
-
-/* ================= 启动与自适应 ================= */
-window.addEventListener('resize', () => {
-  resizeStars();
-  initStars();
-  resizeMeteors();
-  initMeteors();
-});
-
-resizeStars();
-initStars();
-drawStars();
-
-resizeMeteors();
-initMeteors();
-drawMeteors();
-</script>
-</body>
-</html>
+    <div class="content-card">
+      <p>1.</p>
+      <p><a href="https://www.bilibili.com/video/BV1SeMgzEETw/" target="_blank" rel="noopener noreferrer">主線、支線、副職業、外傳流程視頻</a></p>
+      <p>2.</p>
+      <p><a href="https://www.bilibili.com/video/BV1pT6fYyE8b/" target="_blank" rel="noopener noreferrer">改造大師傳奇任務I、II單人視頻</a></p>
+    </div>
 
     <!-- 页脚区域 -->
     <div class="footer">
@@ -566,5 +397,166 @@ drawMeteors();
       </p>
     </div>
   </div>
+
+  <!-- ===== 星空 / 流星脚本 ===== -->
+  <script>
+    /* ================= 星星模块 ================= */
+    const starCanvas = document.getElementById('starfield');
+    const starCtx = starCanvas.getContext('2d');
+
+    let SW, SH;
+    let stars = [];
+    const STAR_COUNT = 200;
+
+    function resizeStars() {
+      SW = starCanvas.width = window.innerWidth;
+      SH = starCanvas.height = window.innerHeight;
+    }
+
+    function createStar(randomY = true) {
+      return {
+        x: Math.random() * SW,
+        y: randomY ? Math.random() * SH : -10,
+        r: Math.random() * 1.5 + 0.3,
+        speedY: Math.random() * 0.5 + 0.2,
+        speedX: (Math.random() - 0.5) * 0.3,
+        alpha: Math.random() * 0.5 + 0.5,
+        twinkle: Math.random() * 0.02 + 0.005
+      };
+    }
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push(createStar(true));
+      }
+    }
+
+    function drawStars() {
+      starCtx.clearRect(0, 0, SW, SH);
+
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+
+        starCtx.beginPath();
+        starCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        starCtx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+        starCtx.shadowBlur = 6;
+        starCtx.shadowColor = 'white';
+        starCtx.fill();
+
+        s.y += s.speedY;
+        s.x += s.speedX;
+
+        s.alpha += s.twinkle;
+        if (s.alpha > 1 || s.alpha < 0.3) s.twinkle = -s.twinkle;
+
+        if (s.y > SH + 5) {
+          stars[i] = createStar(false);
+          stars[i].x = Math.random() * SW;
+        }
+        if (s.x < -5) s.x = SW + 5;
+        if (s.x > SW + 5) s.x = -5;
+      }
+
+      starCtx.shadowBlur = 0;
+      requestAnimationFrame(drawStars);
+    }
+
+    /* ================= 流星模块 ================= */
+    const meteorCanvas = document.getElementById('meteorfield');
+    const meteorCtx = meteorCanvas.getContext('2d');
+
+    let MW, MH;
+    let meteors = [];
+    const METEOR_COUNT = 20;
+
+    const METEOR_ANGLE = Math.PI / 4.5;
+
+    function resizeMeteors() {
+      MW = meteorCanvas.width = window.innerWidth;
+      MH = meteorCanvas.height = window.innerHeight;
+    }
+
+    function createMeteor() {
+      const speed = Math.random() * 3.5 + 2.5;
+      return {
+        x: MW + Math.random() * 250,
+        y: Math.random() * MH * 0.7 - MH * 0.35,
+        len: Math.random() * 100 + 70,
+        vx: -Math.cos(METEOR_ANGLE) * speed,
+        vy: Math.sin(METEOR_ANGLE) * speed,
+        alpha: Math.random() * 0.5 + 0.4,
+        r: Math.random() * 0.7 + 0.6
+      };
+    }
+
+    function initMeteors() {
+      meteors = [];
+      for (let i = 0; i < METEOR_COUNT; i++) {
+        const m = createMeteor();
+        m.x = Math.random() * MW * 1.2;
+        m.y = Math.random() * MH * 0.9 - MH * 0.2;
+        meteors.push(m);
+      }
+    }
+
+    function drawMeteors() {
+      meteorCtx.clearRect(0, 0, MW, MH);
+
+      meteors.forEach((m, i) => {
+        const tailX = m.x + Math.cos(METEOR_ANGLE) * m.len;
+        const tailY = m.y - Math.sin(METEOR_ANGLE) * m.len;
+
+        const grad = meteorCtx.createLinearGradient(m.x, m.y, tailX, tailY);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${m.alpha})`);
+        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        meteorCtx.beginPath();
+        meteorCtx.moveTo(m.x, m.y);
+        meteorCtx.lineTo(tailX, tailY);
+        meteorCtx.strokeStyle = grad;
+        meteorCtx.lineWidth = 1.8;
+        meteorCtx.lineCap = 'round';
+        meteorCtx.shadowBlur = 8;
+        meteorCtx.shadowColor = 'white';
+        meteorCtx.stroke();
+
+        meteorCtx.beginPath();
+        meteorCtx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+        meteorCtx.fillStyle = `rgba(255,255,255,${m.alpha})`;
+        meteorCtx.fill();
+
+        m.x += m.vx;
+        m.y += m.vy;
+
+        if (m.x < -m.len - 20 || m.y > MH + m.len + 20) {
+          const nm = createMeteor();
+          nm.x = MW + Math.random() * 150;
+          nm.y = Math.random() * MH * 0.5 - MH * 0.3;
+          meteors[i] = nm;
+        }
+      });
+
+      meteorCtx.shadowBlur = 0;
+      requestAnimationFrame(drawMeteors);
+    }
+
+    /* ================= 启动与自适应 ================= */
+    window.addEventListener('resize', () => {
+      resizeStars();
+      initStars();
+      resizeMeteors();
+      initMeteors();
+    });
+
+    resizeStars();
+    initStars();
+    drawStars();
+
+    resizeMeteors();
+    initMeteors();
+    drawMeteors();
+  </script>
 </body>
 </html>
