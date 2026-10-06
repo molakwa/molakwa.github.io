@@ -30,16 +30,14 @@
     }
 
     /* ===== 背景画布 ===== */
-    #starfield,
-    #meteorfield {
+    #starfield {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
+      z-index: -2;
     }
-    #starfield { z-index: -2; }
-    #meteorfield { z-index: -1; }
 
     /* ===== 主卡片 ===== */
     .card {
@@ -127,8 +125,11 @@
       box-shadow: 0 0 12px rgba(110, 168, 255, 0.8);
     }
 
-    /* 移除所有折叠箭头相关样式 (保留占位，确保不显示) */
     .section-title::after {
+      display: none;
+    }
+
+    .section-title.collapsed::after {
       display: none;
     }
 
@@ -165,6 +166,13 @@
       height: 100%;
       min-width: 0;
       backdrop-filter: blur(4px);
+      /* 消除移动端点击闪烁 */
+      -webkit-tap-highlight-color: transparent;
+      /* 强制开启硬件加速，减少重绘闪烁 */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .gif-card:hover {
@@ -187,6 +195,11 @@
       -webkit-user-select: none;
       pointer-events: auto;
       border-radius: 12px;
+      /* 防止图片在移动端渲染闪烁 */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     /* ===== 正文卡片 ===== */
@@ -306,9 +319,8 @@
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;">
 
-  <!-- 背景画布 -->
+  <!-- 仅保留星空背景，移除了流星画布 -->
   <canvas id="starfield"></canvas>
-  <canvas id="meteorfield"></canvas>
 
   <div class="card">
     <!-- 个人资料区 -->
@@ -327,7 +339,7 @@
       </div>
     </div>
 
-    <!-- ========== 主職業 ========== -->
+    <!-- ========== 主職業 (不可折叠) ========== -->
     <div class="section-title">
       主職業
     </div>
@@ -354,7 +366,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/phITSfy.gif" alt="剑圣" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 副職業 ========== -->
+    <!-- ========== 副職業 (不可折叠) ========== -->
     <div class="section-title">
       副職業
     </div>
@@ -373,7 +385,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/xOj249p.gif" alt="鬥神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 新年 ========== -->
+    <!-- ========== 新年 (不可折叠) ========== -->
     <div class="section-title">
       新年
     </div>
@@ -389,7 +401,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/bE32mfr.gif" alt="24" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 超級瑪琍 ========== -->
+    <!-- ========== 超級瑪琍 (不可折叠) ========== -->
     <div class="section-title">
       超級瑪琍
     </div>
@@ -406,7 +418,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/ZLAXR4Q.gif" alt="超級瑪琍傳說" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== VVIP ========== -->
+    <!-- ========== VVIP (不可折叠) ========== -->
     <div class="section-title">
       VVIP
     </div>
@@ -418,7 +430,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/jwgzzx3.gif" alt="衝鋒陷陣的祝福" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 彩虹島遠征隊 ========== -->
+    <!-- ========== 彩虹島遠征隊 (不可折叠) ========== -->
     <div class="section-title">
       彩虹島遠征隊
     </div>
@@ -431,7 +443,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/4QZodyR.gif" alt="★範繼宇的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 開心過冬 ========== -->
+    <!-- ========== 開心過冬 (不可折叠) ========== -->
     <div class="section-title">
       開心過冬
     </div>
@@ -442,7 +454,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/CEtYXW8.gif" alt="悠閒的聖誕老人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 獵人 ========== -->
+    <!-- ========== 獵人 (不可折叠) ========== -->
     <div class="section-title">
       獵人
     </div>
@@ -456,7 +468,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/Culcdfd.gif" alt="最高級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 世界第一等 ========== -->
+    <!-- ========== 世界第一等 (不可折叠) ========== -->
     <div class="section-title">
       世界第一等
     </div>
@@ -468,7 +480,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/mOeV7Gc.gif" alt="超高級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 征服每週挑戰！ ========== -->
+    <!-- ========== 征服每週挑戰！ (不可折叠) ========== -->
     <div class="section-title">
       征服每週挑戰！
     </div>
@@ -479,7 +491,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/Nvbkm0l.gif" alt="每週挑戰大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 聲望正在大肆盛行！ ========== -->
+    <!-- ========== 聲望正在大肆盛行！ (不可折叠) ========== -->
     <div class="section-title">
       聲望正在大肆盛行！
     </div>
@@ -490,7 +502,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/ec1UDv6.gif" alt="特洛里" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/clTwBQZ.gif" alt="光之聯合" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 你的聲望如何了？ ========== -->
+
+    <!-- ========== 你的聲望如何了？ (不可折叠) ========== -->
     <div class="section-title">
       你的聲望如何了？
     </div>
@@ -501,7 +514,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/cp1P9Ci.gif" alt="圖書館愛好者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v3/pjwh4r4p~2801-010-01-01-STAND.gif" alt="銀色爪子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 賭徒 ========== -->
+
+    <!-- ========== 賭徒 (不可折叠) ========== -->
     <div class="section-title">
       賭徒
     </div>
@@ -510,7 +524,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/V3GuSdY.gif" alt="骰子貴族" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/7s9THxY.gif" alt="骰子之神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 公會任務大師 ========== -->
+
+    <!-- ========== 公會任務大師 (不可折叠) ========== -->
     <div class="section-title">
       公會任務大師
     </div>
@@ -520,7 +535,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/3G0OY1X.gif" alt="公會簽到王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/rf29Fy1.gif" alt="公會幸運王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 公會 ========== -->
+
+    <!-- ========== 公會 (不可折叠) ========== -->
     <div class="section-title">
       公會
     </div>
@@ -529,9 +545,10 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/07m9xBP.gif" alt="秩序" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/mT0rdLk.gif" alt="混沌" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 溫暖的家人 ========== -->
+
+    <!-- ========== 溫暖的家人 (不可折叠) ========== -->
     <div class="section-title">
-      溫暖的家人
+      溫暖的家人、兄弟
     </div>
     <div class="gif-grid" id="grid-mario">
       <div class="gif-card"><img src="https://img.nloln.de/v2/3My1tel.gif" alt="媽媽" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -539,7 +556,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/oAo745B.gif" alt="女兒" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/52rdMtK.gif" alt="兒子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 溫暖的兄弟 ========== -->
+
+    <!-- ========== 溫暖的兄弟 (不可折叠) ========== -->
     <div class="section-title">
       溫暖的兄弟
     </div>
@@ -549,7 +567,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/7RWQWzr.gif" alt="哥哥" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/DfiTJAJ.gif" alt="姐姐" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 召喚獸交流專家 ========== -->
+
+    <!-- ========== 召喚獸交流專家 (不可折叠) ========== -->
     <div class="section-title">
       召喚獸交流專家
     </div>
@@ -561,7 +580,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/x6bKRGB.gif" alt="金錢就是一切，耶比！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/Isi33Jj.gif" alt="交流的證據" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== [聯動]魔法少女櫻 ========== -->
+
+    <!-- ========== [聯動]魔法少女櫻 (不可折叠) ========== -->
     <div class="section-title">
       [聯動]魔法少女櫻
     </div>
@@ -571,7 +591,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/fnb2lGs.gif" alt="[聯動]_小可" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== FX稱號 ========== -->
+    <!-- ========== FX稱號 (不可折叠) ========== -->
     <div class="section-title">
       FX稱號
     </div>
@@ -602,7 +622,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/TPhqvMg.gif" alt="DEVIL" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/5AkTHB6.gif" alt="熱騰騰耶比妹妹" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 證明之塔 I ========== -->
+
+    <!-- ========== 證明之塔 I (不可折叠) ========== -->
     <div class="section-title">
       證明之塔 I
     </div>
@@ -611,7 +632,8 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/TegrQn4.gif" alt="2" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/lJUNbIR.gif" alt="3" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 證明之塔 II ========== -->
+
+    <!-- ========== 證明之塔 II (不可折叠) ========== -->
     <div class="section-title">
       證明之塔 II
     </div>
@@ -663,7 +685,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/xtrLqpg.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 其他（长） ========== -->
+    <!-- ========== 其他（长） (不可折叠) ========== -->
     <div class="section-title">
       其他（长）
     </div>
@@ -725,7 +747,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/Ap5nXmb.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 其他（方） ========== -->
+    <!-- ========== 其他（方） (不可折叠) ========== -->
     <div class="section-title">
       其他（方）
     </div>
@@ -742,7 +764,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v3/RG43rG3g~1725-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 其他（宽） ========== -->
+    <!-- ========== 其他（宽） (不可折叠) ========== -->
     <div class="section-title">
       其他（宽）
     </div>
@@ -772,7 +794,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v3/spT3qsZF~20061-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 賽季 ========== -->
+    <!-- ========== 賽季 (不可折叠) ========== -->
     <div class="section-title">
       賽季
     </div>
@@ -791,7 +813,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v3/pv2MQq1F~1490-2-Bronze-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 會員 ========== -->
+    <!-- ========== 會員 (不可折叠) ========== -->
     <div class="section-title">
       會員
     </div>
@@ -800,7 +822,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v3/qMQVy2vs~20038-VIP-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 挑戰 ========== -->
+    <!-- ========== 挑戰 (不可折叠) ========== -->
     <div class="section-title">
       挑戰
     </div>
@@ -809,7 +831,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v3/Wv1Hhf4D~1724-Time-Attack-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 與神同行Part.1 ========== -->
+    <!-- ========== 與神同行Part.1 (不可折叠) ========== -->
     <div class="section-title">
       與神同行Part.1
     </div>
@@ -836,7 +858,7 @@
     </div>
   </div>
 
-  <!-- ===== 星空 / 流星脚本 ===== -->
+  <!-- ===== 星空脚本（移除了流星模块） ===== -->
   <script>
     /* ================= 星星模块 ================= */
     const starCanvas = document.getElementById('starfield');
@@ -901,102 +923,15 @@
       requestAnimationFrame(drawStars);
     }
 
-    /* ================= 流星模块 ================= */
-    const meteorCanvas = document.getElementById('meteorfield');
-    const meteorCtx = meteorCanvas.getContext('2d');
-
-    let MW, MH;
-    let meteors = [];
-    const METEOR_COUNT = 20;
-
-    const METEOR_ANGLE = Math.PI / 4.5;
-
-    function resizeMeteors() {
-      MW = meteorCanvas.width = window.innerWidth;
-      MH = meteorCanvas.height = window.innerHeight;
-    }
-
-    function createMeteor() {
-      const speed = Math.random() * 3.5 + 2.5;
-      return {
-        x: MW + Math.random() * 250,
-        y: Math.random() * MH * 0.7 - MH * 0.35,
-        len: Math.random() * 100 + 70,
-        vx: -Math.cos(METEOR_ANGLE) * speed,
-        vy: Math.sin(METEOR_ANGLE) * speed,
-        alpha: Math.random() * 0.5 + 0.4,
-        r: Math.random() * 0.7 + 0.6
-      };
-    }
-
-    function initMeteors() {
-      meteors = [];
-      for (let i = 0; i < METEOR_COUNT; i++) {
-        const m = createMeteor();
-        m.x = Math.random() * MW * 1.2;
-        m.y = Math.random() * MH * 0.9 - MH * 0.2;
-        meteors.push(m);
-      }
-    }
-
-    function drawMeteors() {
-      meteorCtx.clearRect(0, 0, MW, MH);
-
-      meteors.forEach((m, i) => {
-        const tailX = m.x + Math.cos(METEOR_ANGLE) * m.len;
-        const tailY = m.y - Math.sin(METEOR_ANGLE) * m.len;
-
-        const grad = meteorCtx.createLinearGradient(m.x, m.y, tailX, tailY);
-        grad.addColorStop(0, `rgba(255, 255, 255, ${m.alpha})`);
-        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-        meteorCtx.beginPath();
-        meteorCtx.moveTo(m.x, m.y);
-        meteorCtx.lineTo(tailX, tailY);
-        meteorCtx.strokeStyle = grad;
-        meteorCtx.lineWidth = 1.8;
-        meteorCtx.lineCap = 'round';
-        meteorCtx.shadowBlur = 8;
-        meteorCtx.shadowColor = 'white';
-        meteorCtx.stroke();
-
-        meteorCtx.beginPath();
-        meteorCtx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-        meteorCtx.fillStyle = `rgba(255,255,255,${m.alpha})`;
-        meteorCtx.fill();
-
-        m.x += m.vx;
-        m.y += m.vy;
-
-        if (m.x < -m.len - 20 || m.y > MH + m.len + 20) {
-          const nm = createMeteor();
-          nm.x = MW + Math.random() * 150;
-          nm.y = Math.random() * MH * 0.5 - MH * 0.3;
-          meteors[i] = nm;
-        }
-      });
-
-      meteorCtx.shadowBlur = 0;
-      requestAnimationFrame(drawMeteors);
-    }
-
     /* ================= 启动与自适应 ================= */
     window.addEventListener('resize', () => {
       resizeStars();
       initStars();
-      resizeMeteors();
-      initMeteors();
     });
 
     resizeStars();
     initStars();
     drawStars();
-
-    resizeMeteors();
-    initMeteors();
-    drawMeteors();
-
-    /* 折叠交互已全部移除，所有区块保持展开 */
   </script>
 </body>
 </html>
