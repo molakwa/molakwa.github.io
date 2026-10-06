@@ -102,7 +102,7 @@
       margin-left: 8px;
     }
 
-    /* ===== 区块标题 (不再可折叠) ===== */
+    /* ===== 区块标题 ===== */
     .section-title {
       font-size: 1.3rem;
       font-weight: 500;
@@ -127,16 +127,12 @@
       box-shadow: 0 0 12px rgba(110, 168, 255, 0.8);
     }
 
-    /* 移除折叠箭头和悬停效果，保留静态样式 */
+    /* 移除所有折叠箭头相关样式 (保留占位，确保不显示) */
     .section-title::after {
       display: none;
     }
 
-    .section-title.collapsed::after {
-      display: none;
-    }
-
-    /* ===== GIF 网格容器——始终展开 ===== */
+    /* ===== GIF 网格容器 ===== */
     .gif-grid {
       background: transparent;
       margin: 0 20px 8px;
@@ -331,33 +327,26 @@
       </div>
     </div>
 
-    <!-- ========== 主職業 (不可折叠) ========== -->
+    <!-- ========== 主職業 ========== -->
     <div class="section-title">
       主職業
     </div>
     <div class="gif-grid" id="grid-main">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/Ty7YJMb.gif" alt="黑暗追击者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/9ZyEi9u.gif" alt="命运守护者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/yttkajB.gif" alt="風之潛行者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/bysiQ1j.gif" alt="弧形大师" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/y9T1dDW.gif" alt="暴力大师" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/mQD00iR.gif" alt="混血天神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/68QAwcb.gif" alt="闇影武士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/2ycMgNK.gif" alt="天之王者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/YTxw8d4.gif" alt="幻武剑豪" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/Xd9mjWw.gif" alt="諸神使者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第三行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/mpN40oJ.gif" alt="流行天王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/mdOVX9Z.gif" alt="裁決射手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/rfJ8xVN.gif" alt="究極兵甲" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/XfJjC84.gif" alt="暗影行者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/ckU6s4v.gif" alt="大毀滅者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第四行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/Hr4SMd6.gif" alt="妖术師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/G4NugpB.gif" alt="炙焰天" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/ErIcsgh.gif" alt="創世主" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -365,61 +354,51 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/phITSfy.gif" alt="剑圣" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 副職業 (不可折叠) ========== -->
+    <!-- ========== 副職業 ========== -->
     <div class="section-title">
       副職業
     </div>
     <div class="gif-grid" id="grid-sub">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/jSQxStC.gif" alt="魂之勇者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/S5taNZh.gif" alt="劍刃舞者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/TpffCp6.gif" alt="恐懼騎士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/M401gr2.gif" alt="音樂大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/1U0JSPb.gif" alt="忍者大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/XsbUGvs.gif" alt="改造大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/KGxSG75.gif" alt="寶石之星" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/APB2ek5.gif" alt="御風引者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/dfkxdLS.gif" alt="喚雨淨使" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/61aNqtZ.gif" alt="幻術師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第三行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/9YfBpt7.gif" alt="審判者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/xOj249p.gif" alt="鬥神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 新年 (不可折叠) ========== -->
+    <!-- ========== 新年 ========== -->
     <div class="section-title">
       新年
     </div>
     <div class="gif-grid" id="grid-newyear">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/1V31gy1.gif" alt="新年" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/cs76bG2.gif" alt="17" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/j7zNXOl.gif" alt="18" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/RpGs1PM.gif" alt="19" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/0Oe4uHd.gif" alt="20" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/AMPLUb1.gif" alt="21" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/xoaf4J1.gif" alt="22" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/C8LkX6p.gif" alt="23" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/bE32mfr.gif" alt="24" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 超級瑪琍 (不可折叠) ========== -->
+    <!-- ========== 超級瑪琍 ========== -->
     <div class="section-title">
       超級瑪琍
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/O9WocRc.gif" alt="超級瑪琍大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/M8vSBtw.gif" alt="超級瑪琍最簡單了。" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/xKSX8Gv.gif" alt="超級瑪琍很難嗎？" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/6FRaeQS.gif" alt="超級瑪琍就在於手感啊！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/6aF8T4E.gif" alt="超級瑪琍真無聊" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/s46SM2t.gif" alt="超級瑪琍初學者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/nOllkbO.gif" alt="超級瑪琍中級者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/Fkk6nMP.gif" alt="超級瑪琍高級者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -427,12 +406,11 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/ZLAXR4Q.gif" alt="超級瑪琍傳說" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== VVIP (不可折叠) ========== -->
+    <!-- ========== VVIP ========== -->
     <div class="section-title">
       VVIP
     </div>
     <div class="gif-grid" id="grid-vvip">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/xHh1q5o.gif" alt="衝鋒陷陣大王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/fTwGaqs.gif" alt="衝鋒陷陣之神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/9Diu1J1.gif" alt="衝鋒陷陣高手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
@@ -440,7 +418,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/jwgzzx3.gif" alt="衝鋒陷陣的祝福" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 彩虹島遠征隊 (不可折叠) ========== -->
+    <!-- ========== 彩虹島遠征隊 ========== -->
     <div class="section-title">
       彩虹島遠征隊
     </div>
@@ -453,7 +431,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/4QZodyR.gif" alt="★範繼宇的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 開心過冬 (不可折叠) ========== -->
+    <!-- ========== 開心過冬 ========== -->
     <div class="section-title">
       開心過冬
     </div>
@@ -464,7 +442,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/CEtYXW8.gif" alt="悠閒的聖誕老人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 獵人 (不可折叠) ========== -->
+    <!-- ========== 獵人 ========== -->
     <div class="section-title">
       獵人
     </div>
@@ -478,7 +456,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/Culcdfd.gif" alt="最高級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 世界第一等 (不可折叠) ========== -->
+    <!-- ========== 世界第一等 ========== -->
     <div class="section-title">
       世界第一等
     </div>
@@ -490,7 +468,7 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/mOeV7Gc.gif" alt="超高級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 征服每週挑戰！ (不可折叠) ========== -->
+    <!-- ========== 征服每週挑戰！ ========== -->
     <div class="section-title">
       征服每週挑戰！
     </div>
@@ -501,357 +479,344 @@
       <div class="gif-card"><img src="https://img.nloln.de/v2/Nvbkm0l.gif" alt="每週挑戰大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
 
-    <!-- ========== 聲望正在大肆盛行！ (不可折叠) ========== -->
+    <!-- ========== 聲望正在大肆盛行！ ========== -->
     <div class="section-title">
       聲望正在大肆盛行！
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/ZTiwSpN.gif" alt="黑月部族" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/sanxXSf.gif" alt="吉恩蒂亞" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/jmdwd0p.gif" alt="普雷伊奧斯" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/ec1UDv6.gif" alt="特洛里" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/clTwBQZ.gif" alt="光之聯合" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
     </div>
-    <!-- ========== 你的聲望如何了？ (不可折叠) ========== -->
+    <!-- ========== 你的聲望如何了？ ========== -->
     <div class="section-title">
       你的聲望如何了？
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/AOiHu3q.gif" alt="星星守護者的後裔" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v3/Rp2Z9PWX~2501-010-01-01-STAND.gif" alt="暴風監視者新手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/N5ZUE5Z.gif" alt="無限迴廊新手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/cp1P9Ci.gif" alt="圖書館愛好者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v3/pjwh4r4p~2801-010-01-01-STAND.gif" alt="銀色爪子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
     </div>
-    <!-- ========== 賭徒 (不可折叠) ========== -->
+    <!-- ========== 賭徒 ========== -->
     <div class="section-title">
       賭徒
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/wnoyvj2.gif" alt="骰子之王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/V3GuSdY.gif" alt="骰子貴族" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/7s9THxY.gif" alt="骰子之神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-
-
     </div>
-    <!-- ========== 公會任務大師 (不可折叠) ========== -->
+    <!-- ========== 公會任務大師 ========== -->
     <div class="section-title">
       公會任務大師
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/m8z9XCj.gif" alt="公會任務王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/wC6RVFH.gif" alt="公會商品王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/3G0OY1X.gif" alt="公會簽到王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/rf29Fy1.gif" alt="公會幸運王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
     </div>
-    <!-- ========== 公會 (不可折叠) ========== -->
+    <!-- ========== 公會 ========== -->
     <div class="section-title">
       公會
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/roZrUY2.gif" alt="中立" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/07m9xBP.gif" alt="秩序" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/mT0rdLk.gif" alt="混沌" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
     </div>
-
-    <!-- ========== 溫暖的家人、兄弟 (不可折叠) ========== -->
+    <!-- ========== 溫暖的家人 ========== -->
     <div class="section-title">
       溫暖的家人、兄弟
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/3My1tel.gif" alt="媽媽" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/jGWVegL.gif" alt="爸爸" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/oAo745B.gif" alt="女兒" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/52rdMtK.gif" alt="兒子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/DfiTJAJ.gif" alt="姐姐" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
+    </div>
+    <!-- ========== 溫暖的兄弟 ========== -->
+    <div class="section-title">
+      溫暖的兄弟
+    </div>
+    <div class="gif-grid" id="grid-mario">
       <div class="gif-card"><img src="https://img.nloln.de/v2/vp4Uzic.gif" alt="大哥" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/UZfq1Cg.gif" alt="大姐" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/7RWQWzr.gif" alt="哥哥" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      
+      <div class="gif-card"><img src="https://img.nloln.de/v2/DfiTJAJ.gif" alt="姐姐" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-    <!-- ========== 召喚獸交流專家 (不可折叠) ========== -->
+    <!-- ========== 召喚獸交流專家 ========== -->
     <div class="section-title">
       召喚獸交流專家
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/6ahiiEA.gif" alt="神龍之信任" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/taar7I3.gif" alt="完美掌握人工智慧！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/yEDFJ9A.gif" alt="嘮叨鬼寶物的朋友" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/vYSg8Hy.gif" alt="高傲惡魔的信賴" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/x6bKRGB.gif" alt="金錢就是一切，耶比！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/Isi33Jj.gif" alt="交流的證據" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      
     </div>
-    <!-- ========== [聯動]魔法少女櫻 (不可折叠) ========== -->
+    <!-- ========== [聯動]魔法少女櫻 ========== -->
     <div class="section-title">
       [聯動]魔法少女櫻
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/kKw1wZ6.gif" alt="[聯動]_庫洛魔法使" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/7jgeYfT.gif" alt="[聯動]_小櫻" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/fnb2lGs.gif" alt="[聯動]_小可" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      
     </div>
 
-    <!-- ========== FX稱號 (不可折叠) ========== -->
+    <!-- ========== FX稱號 ========== -->
     <div class="section-title">
       FX稱號
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/lfdu7hL.gif" alt="海賊熊" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/H8wkFyX.gif" alt="鈕扣兔" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/z6XLsJC.gif" alt="銀河" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/nA4KaTU.gif" alt="衝浪胖胖耶比" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/mc9BwQf.gif" alt="萊菲卡" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/Bt7fytH.gif" alt="狗狗汪汪汪" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/TPQ71m3.gif" alt="Good_night" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/7CAucka.gif" alt="ROSE" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/mBowJSa.gif" alt="蜜蜂嗡嗡" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/H7tJciL.gif" alt="CHOCOLATE" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/T2ryDXU.gif" alt="AURORA" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/bH7lZ7s.gif" alt="DEMI_GOD" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/6LWQjza.gif" alt="FLY_TO_THE_MOON" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/lixxWEa.gif" alt="SUMMER_STORY" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/VzVKzWQ.gif" alt="Sweet_Monster" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/wWwlOh9.gif" alt="艾露拉" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/UjZisGH.gif" alt="毛球" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/xtaD3qs.gif" alt="水墨畫" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/E04KgNu.gif" alt="士兵玩偶" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/slJnhAO.gif" alt="RETRO" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
       <div class="gif-card"><img src="https://img.nloln.de/v2/S0jN1Vs.gif" alt="Cute_Heart" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/rMs2KbC.gif" alt="傑芮尼斯魔法學院" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/KczjK9P.gif" alt="YOMI" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/TPhqvMg.gif" alt="DEVIL" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
       <div class="gif-card"><img src="https://img.nloln.de/v2/5AkTHB6.gif" alt="熱騰騰耶比妹妹" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-
-    <!-- ========== 證明之塔 (不可折叠) ========== -->
+    <!-- ========== 證明之塔 I ========== -->
     <div class="section-title">
-      證明之塔
+      證明之塔 I
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第三行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第四行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第五行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第六行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第七行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第八行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第九行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第十行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
+      <div class="gif-card"><img src="https://img.nloln.de/v2/aio8m4q.gif" alt="1" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/TegrQn4.gif" alt="2" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/lJUNbIR.gif" alt="3" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
-
-    <!-- ========== 其他 (不可折叠) ========== -->
+    <!-- ========== 證明之塔 II ========== -->
     <div class="section-title">
-      其他
+      證明之塔 II
     </div>
     <div class="gif-grid" id="grid-mario">
-      <!-- 第一行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第三行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第四行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第五行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第六行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第七行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第八行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第九行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第十行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-      <!-- 第一行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第二行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第三行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第四行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第五行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第六行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第七行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第八行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第九行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第十行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第九行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <!-- 第十行 5个 -->
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-
-
+      <div class="gif-card"><img src="https://img.nloln.de/v2/WNpA6u7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/0Z1BwIa.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Gu0xW8M.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/in0d4pK.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/5febXbZ.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/aec1Oy7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/c9iF9qI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/TJ0Dc8P.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/yNzOdZ6.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/FwlkQ8i.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/hUyqVUU.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/CrIUxQP.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Vf3ccZT.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/oiPJcRF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/up8xH1O.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/REcwfFV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/xF4y09W.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Ml0jPWC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Hbd28Dc.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/hgNJyvC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/JOhiW9v.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/FOMdeu4.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/MjlaB8u.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/p1rWrDe.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/O4o1qyV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Ziwj9ZC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/h42Pvft.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/s6Drrj8.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/9glk1yI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/zMHBFN2.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/FbjOPih.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/l63j5eE.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Y2O4ro1.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/fp91u7c.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/9elyhOs.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/k70a9Hz.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Cfc1zYT.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/9QXb1WC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/HfrzgPk.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/eOndhZi.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/p8htRqC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Qa8PJpP.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/eBhipZr.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/QKHPyPh.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/xtrLqpg.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
     </div>
+
+    <!-- ========== 其他（长） ========== -->
+    <div class="section-title">
+      其他（长）
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v2/4Kw0k4p.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/6Fy9K3z.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/li3uw0x.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/hxXqhfv.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/3iHsKXx.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/O6StYxx.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Hopcgcm.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/n8zuJa5.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/kGnhMEE.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/CLSO6cI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/To2Lmim.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/H5DYnAB.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/t5ex2au.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/b4ho57z.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/0oNnVt7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/CGHrrNg.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/BsWLJY6.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Cq6rfjd.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/limy6uF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Bd2c7Ih.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/bZnJDMF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/gPAdYiq.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/jZ5TfK9.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/MRLx6WV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Uedj7yu.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/9Yr7uY9.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/CsuEOcT.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/2uFMM6Q.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/9bhHGH1.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/N9jsqR7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/I2KFRdH.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/ZhXHlfI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/YniRwts.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/hTBVo1d.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/o9M3SAV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/cz8WyEW.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/o7JamDQ.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/4nqcreU.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Zp12b9j.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/phRCEc6.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/JfUh8BC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/7Rd5Fae.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/eKXcbec.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/DKUriId.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/oR8DtZw.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/ObOVgjV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/NwF5Lmk.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/I6Meu38.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/6b9HD9n.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/UD9ggHH.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/B60GvVd.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/0eLQ6of.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/jdaoRZF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/2wVUtwJ.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v2/Ap5nXmb.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
+    <!-- ========== 其他（方） ========== -->
+    <div class="section-title">
+      其他（方）
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v3/whh8SdYr~1360-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/RpgzK9qw~1388-WEDDING-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/cP3Hv7N~1417-9999-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/r2y1NPTv~1542-GATE-KEEPER-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/chkyX9Px~1557-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/jcVghYf~1567-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/nN8hWMLn~1687-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/7xjYyV8S~1719-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/7NLdRKrB~1721-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/RG43rG3g~1725-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
+    <!-- ========== 其他（宽） ========== -->
+    <div class="section-title">
+      其他（宽）
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v3/nspngqBV~1059-The-Best-Level-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/rKdM9ftp~1061-HAPPY-HAPPY-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/QvY4HjxX~1331-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/0j2H32rv~1340-JEWEL-STAR-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/ZRyR97Hj~1347-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/x83dJKy4~1392-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/XrrvNPJm~1400-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/j9rtjws0~1449-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/hFkLf4Xp~1452-LABOOM-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/YFMxTzfq~1482-Autumn-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/1cdfR7q~1499-WINDIA-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/ZppfDR0T~1508-RAINIA-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/GfmcJNmp~1510-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/zT3FrTr2~1597-Butterfly-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/8DPrqHtV~1607-WINTER-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/KjYfSyvH~1611-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/v65hLg41~1633-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/5WVxVwZ9~1702-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/NdJhk4NM~1727-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/yn90859s~1740-SANRIO-CHARACTERS-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/8DfcXDmS~20042-TOP-FAN-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/nqqQfQNY~20049-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/spT3qsZF~20061-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
+    <!-- ========== 賽季 ========== -->
+    <div class="section-title">
+      賽季
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v3/0p8w3rsx~1418-1-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/Sw2DgpJ8~1419-1-Diamond-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/rGq8XrqB~1420-1-Platinum-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/gLftRqB3~1421-1-Gold-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/7xz1B48N~1422-1-Silver-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/WNVftSz3~1423-1-Bronze-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/xtQHWqBR~1485-2-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/35gpMRXZ~1486-2-Diamond-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/fGvj66xF~1487-2-Platinum-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/NnsS8m2K~1488-2-Gold-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/DfhLgLsx~1489-2-Silver-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/pv2MQq1F~1490-2-Bronze-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
+    <!-- ========== 會員 ========== -->
+    <div class="section-title">
+      會員
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v3/fVXfDX85~20037-VIP-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/qMQVy2vs~20038-VIP-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
+    <!-- ========== 挑戰 ========== -->
+    <div class="section-title">
+      挑戰
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v3/jvq6RDbs~1723-Survive-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+      <div class="gif-card"><img src="https://img.nloln.de/v3/Wv1Hhf4D~1724-Time-Attack-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
+    <!-- ========== 與神同行Part.1 ========== -->
+    <div class="section-title">
+      與神同行Part.1
+    </div>
+    <div class="gif-grid" id="grid-mario">
+      <div class="gif-card"><img src="https://img.nloln.de/v3/rK40RT1X~903-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
+    </div>
+
     <!-- 正文内容区 -->
     <div class="content-card">
       <p>1.</p>
@@ -859,7 +824,6 @@
       <p>2.</p>
       <p><a href="https://www.bilibili.com/video/BV1pT6fYyE8b/" target="_blank" rel="noopener noreferrer">改造大師傳奇任務I、II單人視頻</a></p>
     </div>
-
 
     <!-- 页脚区域 -->
     <div class="footer">
@@ -1032,7 +996,7 @@
     initMeteors();
     drawMeteors();
 
-    /* 折叠交互已移除，所有区块标题不可点击折叠 */
+    /* 折叠交互已全部移除，所有区块保持展开 */
   </script>
 </body>
 </html>
