@@ -1,52 +1,72 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>葉南星的主页</title>
-  <link rel="icon" href="https://latale.com.cn//favicon.ico">
+  <title>葉南星的主页 | 彩虹島稱號收藏</title>
+  <meta name="description" content="葉南星的彩虹島（Latale）稱號收藏主頁，收錄主職業、副職業、活動、賽季等稱號。">
+  <meta name="theme-color" content="#070b18">
+  <meta property="og:title" content="葉南星的主页">
+  <meta property="og:description" content="彩虹島（Latale）稱號收藏">
+  <meta property="og:image" content="https://img.nloln.de/v2/MDVYPRl.jpeg">
+  <link rel="icon" href="https://latale.com.cn/content/uploadfile/202511/d2cd1764313704.png">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --accent: #6c6cee;
+      --accent-soft: #ff6699;
+      --link: #a9b4ff;
+      --text-primary: #eef3ff;
+      --text-muted: #b9c4dd;
+      --card-border: rgba(255, 255, 255, 0.12);
+      --card-bg: rgba(255, 255, 255, 0.06);
+      --card-bg-hover: rgba(255, 255, 255, 0.12);
+      --grid-gap: 16px;
+      --page-bg: #070b18;
     }
 
-    html, body {
-      min-height: 100%;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
 
     body {
       font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      background-attachment: fixed;
+      background: var(--page-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      min-height: 100dvh;
       padding: 24px 16px;
-      color: #e8eef7;
+      color: var(--text-primary);
       cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 2 L4 18 L8 14 L11 21 L14 20 L11 13 L17 13 Z' fill='black' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 4 2, default;
+      overflow-x: hidden;
     }
 
-    /* ===== 主卡片 ===== */
+    /* ===== 星空 Canvas（固定全屏，置于内容之下） ===== */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
+    img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
+
     .card {
       position: relative;
       z-index: 1;
       max-width: 1100px;
       width: 100%;
-      background: transparent;
-      border-radius: 36px;
-      overflow: visible;
-      box-shadow: none;
     }
 
-    /* ===== 个人资料头部 ===== */
+    /* ===== 个人资料 ===== */
     .profile-header {
-      background: transparent;
       padding: 32px 24px 28px;
       text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .avatar-wrapper {
@@ -55,15 +75,12 @@
       height: 100px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
       padding: 5px;
       margin-bottom: 16px;
       transition: transform 0.25s ease;
     }
-
-    .avatar-wrapper:hover {
-      transform: scale(1.02);
-    }
+    .avatar-wrapper:hover { transform: scale(1.02); }
 
     .avatar-wrapper img {
       width: 100%;
@@ -77,39 +94,30 @@
       font-size: 2rem;
       font-weight: 600;
       letter-spacing: 2px;
-      color: #f2f7ff;
+      color: #ffffff;
       margin-bottom: 6px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
     }
-
     .profile-name small {
       font-size: 1rem;
       font-weight: 400;
-      color: #b9c8dc;
+      color: var(--text-muted);
       letter-spacing: 1px;
       margin-left: 8px;
     }
 
-    /* ===== 区块标题（可折叠） ===== */
+    /* ===== 区块标题（静态，不可折叠） ===== */
     .section-title {
       font-size: 1.3rem;
       font-weight: 500;
-      color: #eaf1fb;
+      color: #eef3ff;
       margin: 24px 32px 12px;
       display: flex;
       align-items: center;
       gap: 8px;
       letter-spacing: 1px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
       user-select: none;
-      position: relative;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transition: color 0.2s ease;
-    }
-
-    .section-title:hover {
-      color: #ffffff;
     }
 
     .section-title::before {
@@ -117,88 +125,50 @@
       display: inline-block;
       width: 6px;
       height: 24px;
-      background: #6ea8ff;
+      background: var(--accent);
       border-radius: 4px;
-      box-shadow: 0 0 12px rgba(110, 168, 255, 0.8);
+      box-shadow: 0 0 12px rgba(108, 108, 238, 0.9);
       flex-shrink: 0;
     }
 
-    /* 折叠箭头 */
-    .section-title::after {
-      content: '';
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-right: 2px solid #b9d6ff;
-      border-bottom: 2px solid #b9d6ff;
-      transform: rotate(45deg);
-      margin-left: auto;
-      transition: transform 0.25s ease;
-      flex-shrink: 0;
-      position: relative;
-      top: -2px;
-    }
-
-    .section-title.collapsed::after {
-      transform: rotate(-45deg);
-      top: 0;
-    }
-
-    /* ===== GIF 网格容器（可折叠） ===== */
+    /* ===== GIF 网格（静态展示） ===== */
     .gif-grid {
-      background: transparent;
       margin: 0 20px 8px;
       padding: 24px 20px;
       border-radius: 32px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      gap: var(--grid-gap);
       align-items: stretch;
       justify-content: stretch;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: none;
-      backdrop-filter: blur(2px);
+      border: 1px solid var(--card-border);
+      background: rgba(10, 14, 30, 0.35);
       overflow: hidden;
-      max-height: 10000px;
-      opacity: 1;
-      transition: max-height 0.35s ease, padding 0.35s ease, margin 0.35s ease, opacity 0.25s ease, border-width 0.2s ease;
-    }
-
-    .gif-grid.collapsed {
-      max-height: 0 !important;
-      padding-top: 0;
-      padding-bottom: 0;
-      margin-bottom: 0;
-      opacity: 0;
-      border-width: 0;
     }
 
     .gif-card {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--card-bg);
       border-radius: 22px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-      transition: all 0.2s ease;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
       padding: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--card-border);
       width: 100%;
       height: 100%;
       min-width: 0;
-      backdrop-filter: blur(4px);
       -webkit-tap-highlight-color: transparent;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
     }
 
-    .gif-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 24px -8px rgba(0, 0, 0, 0.45), 0 4px 10px rgba(0, 0, 0, 0.25);
-      border-color: rgba(140, 190, 255, 0.55);
-      background: rgba(255, 255, 255, 0.1);
+    @media (hover: hover) {
+      .gif-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 24px -8px rgba(0, 0, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.3);
+        border-color: rgba(150, 160, 255, 0.6);
+        background: var(--card-bg-hover);
+      }
     }
 
     .gif-card img {
@@ -208,121 +178,82 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      -webkit-user-drag: none;
-      user-drag: none;
-      user-select: none;
-      -webkit-user-select: none;
       pointer-events: auto;
       border-radius: 12px;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+    }
+
+    .gif-card img.is-broken {
+      background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 8px, rgba(255,255,255,0.1) 8px, rgba(255,255,255,0.1) 16px);
+      min-width: 60px;
+      min-height: 60px;
     }
 
     /* ===== 正文卡片 ===== */
     .content-card {
-      background: transparent;
       margin: 22px 24px 28px;
       padding: 28px 32px;
       border-radius: 28px;
-      box-shadow: none;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--card-border);
+      background: rgba(10, 14, 30, 0.4);
       line-height: 1.8;
-      color: #dbe6f4;
+      color: #e2e8f6;
       font-size: 1rem;
-      backdrop-filter: blur(2px);
     }
-
-    .content-card p {
-      margin-bottom: 10px;
-    }
-
-    .content-card p:last-child {
-      margin-bottom: 0;
-    }
+    .content-card p { margin-bottom: 10px; }
+    .content-card p:last-child { margin-bottom: 0; }
 
     .content-card a {
-      color: #8ab6e8;
+      color: var(--link);
       text-decoration: none;
-      border-bottom: 1px dashed rgba(138, 182, 232, 0.5);
-      transition: all 0.2s;
+      border-bottom: 1px dashed rgba(169, 180, 255, 0.5);
+      transition: color 0.2s, border-bottom-color 0.2s;
     }
-
     .content-card a:hover {
-      color: #b9d6ff;
-      border-bottom-color: #b9d6ff;
+      color: var(--accent-soft);
+      border-bottom-color: var(--accent-soft);
     }
 
     /* ===== 页脚 ===== */
     .footer {
       text-align: center;
       padding: 22px 24px 28px;
-      background: transparent;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       font-size: 0.9rem;
-      color: #b9c8dc;
+      color: var(--text-muted);
       letter-spacing: 0.5px;
     }
-
     .footer a {
-      color: #8ab6e8;
+      color: var(--link);
       text-decoration: none;
       font-weight: 500;
-      border-bottom: 1px dashed rgba(138, 182, 232, 0.5);
-      transition: all 0.2s;
+      border-bottom: 1px dashed rgba(169, 180, 255, 0.5);
+      transition: color 0.2s, border-bottom-color 0.2s;
       padding-bottom: 2px;
       margin-left: 8px;
     }
-
     .footer a:hover {
-      color: #b9d6ff;
-      border-bottom-color: #b9d6ff;
+      color: var(--accent-soft);
+      border-bottom-color: var(--accent-soft);
     }
-
-    .footer p {
-      margin: 6px 0;
-    }
+    .footer p { margin: 6px 0; }
 
     .footer .sep {
       display: inline-block;
       width: 4px;
       height: 4px;
-      background: rgba(185, 200, 220, 0.6);
+      background: rgba(185, 196, 221, 0.6);
       border-radius: 50%;
       margin: 0 12px;
       vertical-align: middle;
     }
 
-    /* ===== 响应式 ===== */
+    /* ===== 响应式（降序排列） ===== */
     @media (max-width: 900px) {
-      .gif-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 14px;
-      }
+      .gif-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
     }
-
     @media (max-width: 700px) {
-      .gif-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-      }
+      .gif-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     }
-
-    @media (max-width: 500px) {
-      .gif-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-      .gif-card {
-        border-radius: 16px;
-        padding: 6px;
-      }
-      .gif-card img {
-        border-radius: 8px;
-      }
-    }
-
     @media (max-width: 640px) {
       body { padding: 12px 8px; }
       .card { border-radius: 28px; }
@@ -333,470 +264,40 @@
       .section-title { margin: 20px 20px 10px; font-size: 1.2rem; }
       .content-card { margin: 16px 16px 22px; padding: 22px 18px; }
     }
+    @media (max-width: 500px) {
+      .gif-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .gif-card { border-radius: 16px; padding: 6px; }
+      .gif-card img { border-radius: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
-<body oncontextmenu="return false;" ondragstart="return false;">
+<body>
+  <!-- 星空背景 -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
   <div class="card">
-    <!-- 个人资料区 -->
     <div class="profile-header">
       <div class="avatar-wrapper">
         <img
           src="https://img.nloln.de/v2/MDVYPRl.jpeg"
           alt="葉南星头像"
           loading="lazy"
+          decoding="async"
           draggable="false"
-          oncontextmenu="return false;"
         >
       </div>
-      <div class="profile-name">
-        葉南星 <small></small>
-      </div>
+      <div class="profile-name">葉南星 <small></small></div>
     </div>
 
-    <!-- ========== 主職業 ========== -->
-    <div class="section-title" data-target="grid-main">主職業</div>
-    <div class="gif-grid" id="grid-main">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Ty7YJMb.gif" alt="黑暗追击者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9ZyEi9u.gif" alt="命运守护者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/yttkajB.gif" alt="風之潛行者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/bysiQ1j.gif" alt="弧形大师" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/y9T1dDW.gif" alt="暴力大师" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mQD00iR.gif" alt="混血天神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/68QAwcb.gif" alt="闇影武士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/2ycMgNK.gif" alt="天之王者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/YTxw8d4.gif" alt="幻武剑豪" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Xd9mjWw.gif" alt="諸神使者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mpN40oJ.gif" alt="流行天王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mdOVX9Z.gif" alt="裁決射手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/rfJ8xVN.gif" alt="究極兵甲" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/XfJjC84.gif" alt="暗影行者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ckU6s4v.gif" alt="大毀滅者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Hr4SMd6.gif" alt="妖术師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/G4NugpB.gif" alt="炙焰天" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ErIcsgh.gif" alt="創世主" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/rWOPnhp.gif" alt="弒魂者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/phITSfy.gif" alt="剑圣" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
+    <div id="sections"></div>
 
-    <!-- ========== 副職業 ========== -->
-    <div class="section-title" data-target="grid-sub">副職業</div>
-    <div class="gif-grid" id="grid-sub">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/jSQxStC.gif" alt="魂之勇者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/S5taNZh.gif" alt="劍刃舞者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/TpffCp6.gif" alt="恐懼騎士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/M401gr2.gif" alt="音樂大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/1U0JSPb.gif" alt="忍者大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/XsbUGvs.gif" alt="改造大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/KGxSG75.gif" alt="寶石之星" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/APB2ek5.gif" alt="御風引者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/dfkxdLS.gif" alt="喚雨淨使" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/61aNqtZ.gif" alt="幻術師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9YfBpt7.gif" alt="審判者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xOj249p.gif" alt="鬥神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 新年 ========== -->
-    <div class="section-title" data-target="grid-newyear">新年</div>
-    <div class="gif-grid" id="grid-newyear">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/1V31gy1.gif" alt="新年" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/cs76bG2.gif" alt="17" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/j7zNXOl.gif" alt="18" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/RpGs1PM.gif" alt="19" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/0Oe4uHd.gif" alt="20" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/AMPLUb1.gif" alt="21" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xoaf4J1.gif" alt="22" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/C8LkX6p.gif" alt="23" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/bE32mfr.gif" alt="24" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 超級瑪琍 ========== -->
-    <div class="section-title" data-target="grid-mario-1">超級瑪琍</div>
-    <div class="gif-grid" id="grid-mario-1">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/O9WocRc.gif" alt="超級瑪琍大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/M8vSBtw.gif" alt="超級瑪琍最簡單了。" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xKSX8Gv.gif" alt="超級瑪琍很難嗎？" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/6FRaeQS.gif" alt="超級瑪琍就在於手感啊！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/6aF8T4E.gif" alt="超級瑪琍真無聊" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/s46SM2t.gif" alt="超級瑪琍初學者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/nOllkbO.gif" alt="超級瑪琍中級者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Fkk6nMP.gif" alt="超級瑪琍高級者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/joDWCYV.gif" alt="超級瑪琍最高級者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ZLAXR4Q.gif" alt="超級瑪琍傳說" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== VVIP ========== -->
-    <div class="section-title" data-target="grid-vvip">VVIP</div>
-    <div class="gif-grid" id="grid-vvip">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xHh1q5o.gif" alt="衝鋒陷陣大王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/fTwGaqs.gif" alt="衝鋒陷陣之神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9Diu1J1.gif" alt="衝鋒陷陣高手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/qZL959D.gif" alt="衝鋒陷陣達人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/jwgzzx3.gif" alt="衝鋒陷陣的祝福" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 彩虹島遠征隊 ========== -->
-    <div class="section-title" data-target="grid-expedition">彩虹島遠征隊</div>
-    <div class="gif-grid" id="grid-expedition">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/19oIYJV.gif" alt="★愛麗絲的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/eQuAo1y.gif" alt="★雷比的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/3D6nXra.gif" alt="★卡茲諾的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ltNZVlv.gif" alt="★穆亞的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/z8eIq4Z.gif" alt="★黑月公主的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/4QZodyR.gif" alt="★範繼宇的朋友★" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 開心過冬 ========== -->
-    <div class="section-title" data-target="grid-winter">開心過冬</div>
-    <div class="gif-grid" id="grid-winter">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/kOtQRe4.gif" alt="頌歌達人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/qn50q5A.gif" alt="雪橇騎士" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/dLmn3rO.gif" alt="仁慈的小氣鬼" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/CEtYXW8.gif" alt="悠閒的聖誕老人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 獵人 ========== -->
-    <div class="section-title" data-target="grid-hunter">獵人</div>
-    <div class="gif-grid" id="grid-hunter">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/HKDTR0J.gif" alt="菜鳥獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/yrJR29y.gif" alt="初級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/LIGsg9Z.gif" alt="中級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/giufDna.gif" alt="高級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/1wqMMb3.gif" alt="特級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/zRNWDhu.gif" alt="精通獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Culcdfd.gif" alt="最高級獵人" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 世界第一等 ========== -->
-    <div class="section-title" data-target="grid-firstclass">世界第一等</div>
-    <div class="gif-grid" id="grid-firstclass">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/5dWb2Pr.gif" alt="初級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ZE8fhCY.gif" alt="中級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/wZXycWpR~916-010-01-01-STAND.gif" alt="高級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/YvU9UTe.gif" alt="頂級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mOeV7Gc.gif" alt="超高級兔子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 征服每週挑戰！ ========== -->
-    <div class="section-title" data-target="grid-weekly">征服每週挑戰！</div>
-    <div class="gif-grid" id="grid-weekly">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/yhiEpXu.gif" alt="每週挑戰征服者[初級]" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Hw2WC8O.gif" alt="每週挑戰征服者[中級]" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Vax4ZXW.gif" alt="每週挑戰征服者[高級]" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Nvbkm0l.gif" alt="每週挑戰大師" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 聲望正在大肆盛行！ ========== -->
-    <div class="section-title" data-target="grid-fame1">聲望正在大肆盛行！</div>
-    <div class="gif-grid" id="grid-fame1">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ZTiwSpN.gif" alt="黑月部族" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/sanxXSf.gif" alt="吉恩蒂亞" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/jmdwd0p.gif" alt="普雷伊奧斯" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ec1UDv6.gif" alt="特洛里" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/clTwBQZ.gif" alt="光之聯合" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 你的聲望如何了？ ========== -->
-    <div class="section-title" data-target="grid-fame2">你的聲望如何了？</div>
-    <div class="gif-grid" id="grid-fame2">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/AOiHu3q.gif" alt="星星守護者的後裔" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/Rp2Z9PWX~2501-010-01-01-STAND.gif" alt="暴風監視者新手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/N5ZUE5Z.gif" alt="無限迴廊新手" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/cp1P9Ci.gif" alt="圖書館愛好者" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/pjwh4r4p~2801-010-01-01-STAND.gif" alt="銀色爪子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 賭徒 ========== -->
-    <div class="section-title" data-target="grid-gambler">賭徒</div>
-    <div class="gif-grid" id="grid-gambler">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/wnoyvj2.gif" alt="骰子之王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/V3GuSdY.gif" alt="骰子貴族" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/7s9THxY.gif" alt="骰子之神" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 公會任務大師 ========== -->
-    <div class="section-title" data-target="grid-guildquest">公會任務大師</div>
-    <div class="gif-grid" id="grid-guildquest">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/m8z9XCj.gif" alt="公會任務王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/wC6RVFH.gif" alt="公會商品王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/3G0OY1X.gif" alt="公會簽到王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/rf29Fy1.gif" alt="公會幸運王" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 公會 ========== -->
-    <div class="section-title" data-target="grid-guild">公會</div>
-    <div class="gif-grid" id="grid-guild">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/roZrUY2.gif" alt="中立" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/07m9xBP.gif" alt="秩序" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mT0rdLk.gif" alt="混沌" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 溫暖的家人 ========== -->
-    <div class="section-title" data-target="grid-family">溫暖的家人、兄弟</div>
-    <div class="gif-grid" id="grid-family">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/3My1tel.gif" alt="媽媽" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/jGWVegL.gif" alt="爸爸" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/oAo745B.gif" alt="女兒" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/52rdMtK.gif" alt="兒子" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 溫暖的兄弟 ========== -->
-    <div class="section-title" data-target="grid-brothers">溫暖的兄弟</div>
-    <div class="gif-grid" id="grid-brothers">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/vp4Uzic.gif" alt="大哥" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/UZfq1Cg.gif" alt="大姐" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/dsw9qKyc~956-010-01-01-STAND.gif" alt="哥哥" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/DfiTJAJ.gif" alt="姐姐" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 召喚獸交流專家 ========== -->
-    <div class="section-title" data-target="grid-summon">召喚獸交流專家</div>
-    <div class="gif-grid" id="grid-summon">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/6ahiiEA.gif" alt="神龍之信任" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/taar7I3.gif" alt="完美掌握人工智慧！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/yEDFJ9A.gif" alt="嘮叨鬼寶物的朋友" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/vYSg8Hy.gif" alt="高傲惡魔的信賴" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/x6bKRGB.gif" alt="金錢就是一切，耶比！" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Isi33Jj.gif" alt="交流的證據" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== [聯動]魔法少女櫻 ========== -->
-    <div class="section-title" data-target="grid-sakura">[聯動]魔法少女櫻</div>
-    <div class="gif-grid" id="grid-sakura">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/kKw1wZ6.gif" alt="[聯動]_庫洛魔法使" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/3yGvjxp0~1677-010-01-01-STAND.gif" alt="[聯動]_小櫻" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/fnb2lGs.gif" alt="[聯動]_小可" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== FX稱號 ========== -->
-    <div class="section-title" data-target="grid-fx">FX稱號</div>
-    <div class="gif-grid" id="grid-fx">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/lfdu7hL.gif" alt="海賊熊" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/H8wkFyX.gif" alt="鈕扣兔" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/z6XLsJC.gif" alt="銀河" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/nA4KaTU.gif" alt="衝浪胖胖耶比" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mc9BwQf.gif" alt="萊菲卡" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/hJy4cG9d~1584-010-01-01-STAND.gif" alt="狗狗汪汪汪" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/TPQ71m3.gif" alt="Good_night" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/5gQrkZGH~1438-ROSE-010-01-01-STAND.gif" alt="ROSE" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/mBowJSa.gif" alt="蜜蜂嗡嗡" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/H7tJciL.gif" alt="CHOCOLATE" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/T2ryDXU.gif" alt="AURORA" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/KxpcfVmT~1545-DEMI-GOD-010-01-01-STAND.gif" alt="DEMI_GOD" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/6LWQjza.gif" alt="FLY_TO_THE_MOON" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/lixxWEa.gif" alt="SUMMER_STORY" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/VzVKzWQ.gif" alt="Sweet_Monster" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/wWwlOh9.gif" alt="艾露拉" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/UjZisGH.gif" alt="毛球" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xtaD3qs.gif" alt="水墨畫" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/E04KgNu.gif" alt="士兵玩偶" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/slJnhAO.gif" alt="RETRO" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/S0jN1Vs.gif" alt="Cute_Heart" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/rMs2KbC.gif" alt="傑芮尼斯魔法學院" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/KczjK9P.gif" alt="YOMI" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/TPhqvMg.gif" alt="DEVIL" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/5AkTHB6.gif" alt="熱騰騰耶比妹妹" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 證明之塔 I ========== -->
-    <div class="section-title" data-target="grid-tower1">證明之塔 I</div>
-    <div class="gif-grid" id="grid-tower1">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/aio8m4q.gif" alt="1" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/TegrQn4.gif" alt="2" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/lJUNbIR.gif" alt="3" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 證明之塔 II ========== -->
-    <div class="section-title" data-target="grid-tower2">證明之塔 II</div>
-    <div class="gif-grid" id="grid-tower2">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/WNpA6u7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/0Z1BwIa.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Gu0xW8M.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/in0d4pK.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/5febXbZ.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/aec1Oy7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/c9iF9qI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/TJ0Dc8P.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/yNzOdZ6.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/FwlkQ8i.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/hUyqVUU.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/CrIUxQP.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Vf3ccZT.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/oiPJcRF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/up8xH1O.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/REcwfFV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xF4y09W.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Ml0jPWC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Hbd28Dc.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/hgNJyvC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/JOhiW9v.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/FOMdeu4.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/MjlaB8u.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/p1rWrDe.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/O4o1qyV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Ziwj9ZC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/h42Pvft.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/s6Drrj8.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9glk1yI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/zMHBFN2.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/FbjOPih.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/l63j5eE.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Y2O4ro1.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/fp91u7c.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9elyhOs.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/k70a9Hz.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Cfc1zYT.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9QXb1WC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/HfrzgPk.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/eOndhZi.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/p8htRqC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Qa8PJpP.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/eBhipZr.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/QKHPyPh.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/xtrLqpg.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 其他（长） ========== -->
-    <div class="section-title" data-target="grid-other-long">其他（长）</div>
-    <div class="gif-grid" id="grid-other-long">
-      <div class="gif-card"><img src="https://img.nloln.de/v2/4Kw0k4p.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/6Fy9K3z.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/li3uw0x.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/hxXqhfv.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/3iHsKXx.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/O6StYxx.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Hopcgcm.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/n8zuJa5.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/kGnhMEE.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/CLSO6cI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/To2Lmim.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/H5DYnAB.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/t5ex2au.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/b4ho57z.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/0oNnVt7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/CGHrrNg.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/BsWLJY6.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Cq6rfjd.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/limy6uF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Bd2c7Ih.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/bZnJDMF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/gPAdYiq.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/jZ5TfK9.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/MRLx6WV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Uedj7yu.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9Yr7uY9.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/CsuEOcT.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/2uFMM6Q.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/9bhHGH1.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/N9jsqR7.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/I2KFRdH.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ZhXHlfI.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/YniRwts.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/hTBVo1d.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/o9M3SAV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/cz8WyEW.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/o7JamDQ.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/4nqcreU.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Zp12b9j.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/phRCEc6.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/JfUh8BC.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/7Rd5Fae.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/eKXcbec.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/DKUriId.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/oR8DtZw.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/ObOVgjV.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/NwF5Lmk.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/I6Meu38.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/6b9HD9n.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/UD9ggHH.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/B60GvVd.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/0eLQ6of.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/jdaoRZF.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/2wVUtwJ.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v2/Ap5nXmb.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 其他（方） ========== -->
-    <div class="section-title" data-target="grid-other-square">其他（方）</div>
-    <div class="gif-grid" id="grid-other-square">
-      <div class="gif-card"><img src="https://img.nloln.de/v3/whh8SdYr~1360-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/RpgzK9qw~1388-WEDDING-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/cP3Hv7N~1417-9999-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/r2y1NPTv~1542-GATE-KEEPER-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/chkyX9Px~1557-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/jcVghYf~1567-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/nN8hWMLn~1687-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/7xjYyV8S~1719-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/7NLdRKrB~1721-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/RG43rG3g~1725-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 其他（宽） ========== -->
-    <div class="section-title" data-target="grid-other-wide">其他（宽）</div>
-    <div class="gif-grid" id="grid-other-wide">
-      <div class="gif-card"><img src="https://img.nloln.de/v3/nspngqBV~1059-The-Best-Level-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/rKdM9ftp~1061-HAPPY-HAPPY-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/QvY4HjxX~1331-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/0j2H32rv~1340-JEWEL-STAR-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/ZRyR97Hj~1347-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/x83dJKy4~1392-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/XrrvNPJm~1400-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/j9rtjws0~1449-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/hFkLf4Xp~1452-LABOOM-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/YFMxTzfq~1482-Autumn-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/1cdfR7q~1499-WINDIA-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/ZppfDR0T~1508-RAINIA-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/GfmcJNmp~1510-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/zT3FrTr2~1597-Butterfly-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/8DPrqHtV~1607-WINTER-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/KjYfSyvH~1611-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/v65hLg41~1633-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/5WVxVwZ9~1702-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/NdJhk4NM~1727-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/yn90859s~1740-SANRIO-CHARACTERS-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/8DfcXDmS~20042-TOP-FAN-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/nqqQfQNY~20049-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/spT3qsZF~20061-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 賽季 ========== -->
-    <div class="section-title" data-target="grid-season">賽季</div>
-    <div class="gif-grid" id="grid-season">
-      <div class="gif-card"><img src="https://img.nloln.de/v3/0p8w3rsx~1418-1-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/Sw2DgpJ8~1419-1-Diamond-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/rGq8XrqB~1420-1-Platinum-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/gLftRqB3~1421-1-Gold-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/7xz1B48N~1422-1-Silver-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/WNVftSz3~1423-1-Bronze-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/xtQHWqBR~1485-2-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/35gpMRXZ~1486-2-Diamond-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/fGvj66xF~1487-2-Platinum-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/NnsS8m2K~1488-2-Gold-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/DfhLgLsx~1489-2-Silver-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/pv2MQq1F~1490-2-Bronze-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 會員 ========== -->
-    <div class="section-title" data-target="grid-member">會員</div>
-    <div class="gif-grid" id="grid-member">
-      <div class="gif-card"><img src="https://img.nloln.de/v3/fVXfDX85~20037-VIP-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/qMQVy2vs~20038-VIP-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 挑戰 ========== -->
-    <div class="section-title" data-target="grid-challenge">挑戰</div>
-    <div class="gif-grid" id="grid-challenge">
-      <div class="gif-card"><img src="https://img.nloln.de/v3/jvq6RDbs~1723-Survive-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-      <div class="gif-card"><img src="https://img.nloln.de/v3/Wv1Hhf4D~1724-Time-Attack-Master-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- ========== 與神同行Part.1 ========== -->
-    <div class="section-title" data-target="grid-god">與神同行Part.1</div>
-    <div class="gif-grid" id="grid-god">
-      <div class="gif-card"><img src="https://img.nloln.de/v3/rK40RT1X~903-010-01-01-STAND.gif" alt="" loading="lazy" draggable="false" oncontextmenu="return false;"></div>
-    </div>
-
-    <!-- 正文内容区 -->
     <div class="content-card">
       <p>1.</p>
       <p><a href="https://www.bilibili.com/video/BV1SeMgzEETw/" target="_blank" rel="noopener noreferrer">主線、支線、副職業、外傳流程視頻</a></p>
@@ -804,9 +305,8 @@
       <p><a href="https://www.bilibili.com/video/BV1pT6fYyE8b/" target="_blank" rel="noopener noreferrer">改造大師傳奇任務I、II單人視頻</a></p>
     </div>
 
-    <!-- 页脚区域 -->
     <div class="footer">
-      <p>版权所有 © a961545828@gmail.com</p>
+      <p>版权所有 © <a href="mailto:a961545828@gmail.com">a961545828@gmail.com</a></p>
       <p>
         <span class="sep"></span>
         <a href="https://space.bilibili.com/102740832" target="_blank" rel="noopener noreferrer">B站主页</a>
@@ -815,68 +315,495 @@
     </div>
   </div>
 
-  <!-- ===== 折叠交互脚本（无星空） ===== -->
   <script>
-    (function () {
-      var titles = document.querySelectorAll('.section-title');
-      for (var i = 0; i < titles.length; i++) {
-        var title = titles[i];
-        var targetId = title.getAttribute('data-target');
-        if (!targetId) continue;
-        var grid = document.getElementById(targetId);
-        if (!grid) continue;
+    // ============ 数据（与原版一致） ============
+    var SECTIONS = [
+      { id: 'grid-main', title: '主職業', items: [
+        { src: 'https://img.nloln.de/v2/Ty7YJMb.gif', alt: '黑暗追击者' },
+        { src: 'https://img.nloln.de/v2/9ZyEi9u.gif', alt: '命运守护者' },
+        { src: 'https://img.nloln.de/v2/yttkajB.gif', alt: '風之潛行者' },
+        { src: 'https://img.nloln.de/v2/bysiQ1j.gif', alt: '弧形大师' },
+        { src: 'https://img.nloln.de/v2/y9T1dDW.gif', alt: '暴力大师' },
+        { src: 'https://img.nloln.de/v2/mQD00iR.gif', alt: '混血天神' },
+        { src: 'https://img.nloln.de/v2/68QAwcb.gif', alt: '闇影武士' },
+        { src: 'https://img.nloln.de/v2/2ycMgNK.gif', alt: '天之王者' },
+        { src: 'https://img.nloln.de/v2/YTxw8d4.gif', alt: '幻武剑豪' },
+        { src: 'https://img.nloln.de/v2/Xd9mjWw.gif', alt: '諸神使者' },
+        { src: 'https://img.nloln.de/v2/mpN40oJ.gif', alt: '流行天王' },
+        { src: 'https://img.nloln.de/v2/mdOVX9Z.gif', alt: '裁決射手' },
+        { src: 'https://img.nloln.de/v2/rfJ8xVN.gif', alt: '究極兵甲' },
+        { src: 'https://img.nloln.de/v2/XfJjC84.gif', alt: '暗影行者' },
+        { src: 'https://img.nloln.de/v2/ckU6s4v.gif', alt: '大毀滅者' },
+        { src: 'https://img.nloln.de/v2/Hr4SMd6.gif', alt: '妖术師' },
+        { src: 'https://img.nloln.de/v2/G4NugpB.gif', alt: '炙焰天' },
+        { src: 'https://img.nloln.de/v2/ErIcsgh.gif', alt: '創世主' },
+        { src: 'https://img.nloln.de/v2/rWOPnhp.gif', alt: '弒魂者' },
+        { src: 'https://img.nloln.de/v2/phITSfy.gif', alt: '剑圣' }
+      ]},
+      { id: 'grid-sub', title: '副職業', items: [
+        { src: 'https://img.nloln.de/v2/jSQxStC.gif', alt: '魂之勇者' },
+        { src: 'https://img.nloln.de/v2/S5taNZh.gif', alt: '劍刃舞者' },
+        { src: 'https://img.nloln.de/v2/TpffCp6.gif', alt: '恐懼騎士' },
+        { src: 'https://img.nloln.de/v2/M401gr2.gif', alt: '音樂大師' },
+        { src: 'https://img.nloln.de/v2/1U0JSPb.gif', alt: '忍者大師' },
+        { src: 'https://img.nloln.de/v2/XsbUGvs.gif', alt: '改造大師' },
+        { src: 'https://img.nloln.de/v2/KGxSG75.gif', alt: '寶石之星' },
+        { src: 'https://img.nloln.de/v2/APB2ek5.gif', alt: '御風引者' },
+        { src: 'https://img.nloln.de/v2/dfkxdLS.gif', alt: '喚雨淨使' },
+        { src: 'https://img.nloln.de/v2/61aNqtZ.gif', alt: '幻術師' },
+        { src: 'https://img.nloln.de/v2/9YfBpt7.gif', alt: '審判者' },
+        { src: 'https://img.nloln.de/v2/xOj249p.gif', alt: '鬥神' }
+      ]},
+      { id: 'grid-newyear', title: '新年', items: [
+        { src: 'https://img.nloln.de/v2/1V31gy1.gif', alt: '新年' },
+        { src: 'https://img.nloln.de/v2/cs76bG2.gif', alt: '17' },
+        { src: 'https://img.nloln.de/v2/j7zNXOl.gif', alt: '18' },
+        { src: 'https://img.nloln.de/v2/RpGs1PM.gif', alt: '19' },
+        { src: 'https://img.nloln.de/v2/0Oe4uHd.gif', alt: '20' },
+        { src: 'https://img.nloln.de/v2/AMPLUb1.gif', alt: '21' },
+        { src: 'https://img.nloln.de/v2/xoaf4J1.gif', alt: '22' },
+        { src: 'https://img.nloln.de/v2/C8LkX6p.gif', alt: '23' },
+        { src: 'https://img.nloln.de/v2/bE32mfr.gif', alt: '24' }
+      ]},
+      { id: 'grid-mario-1', title: '超級瑪琍', items: [
+        { src: 'https://img.nloln.de/v2/O9WocRc.gif', alt: '超級瑪琍大師' },
+        { src: 'https://img.nloln.de/v2/M8vSBtw.gif', alt: '超級瑪琍最簡單了。' },
+        { src: 'https://img.nloln.de/v2/xKSX8Gv.gif', alt: '超級瑪琍很難嗎？' },
+        { src: 'https://img.nloln.de/v2/6FRaeQS.gif', alt: '超級瑪琍就在於手感啊！' },
+        { src: 'https://img.nloln.de/v2/6aF8T4E.gif', alt: '超級瑪琍真無聊' },
+        { src: 'https://img.nloln.de/v2/s46SM2t.gif', alt: '超級瑪琍初學者' },
+        { src: 'https://img.nloln.de/v2/nOllkbO.gif', alt: '超級瑪琍中級者' },
+        { src: 'https://img.nloln.de/v2/Fkk6nMP.gif', alt: '超級瑪琍高級者' },
+        { src: 'https://img.nloln.de/v2/joDWCYV.gif', alt: '超級瑪琍最高級者' },
+        { src: 'https://img.nloln.de/v2/ZLAXR4Q.gif', alt: '超級瑪琍傳說' }
+      ]},
+      { id: 'grid-vvip', title: 'VVIP', items: [
+        { src: 'https://img.nloln.de/v2/xHh1q5o.gif', alt: '衝鋒陷陣大王' },
+        { src: 'https://img.nloln.de/v2/fTwGaqs.gif', alt: '衝鋒陷陣之神' },
+        { src: 'https://img.nloln.de/v2/9Diu1J1.gif', alt: '衝鋒陷陣高手' },
+        { src: 'https://img.nloln.de/v2/qZL959D.gif', alt: '衝鋒陷陣達人' },
+        { src: 'https://img.nloln.de/v2/jwgzzx3.gif', alt: '衝鋒陷陣的祝福' }
+      ]},
+      { id: 'grid-expedition', title: '彩虹島遠征隊', items: [
+        { src: 'https://img.nloln.de/v2/19oIYJV.gif', alt: '★愛麗絲的朋友★' },
+        { src: 'https://img.nloln.de/v2/eQuAo1y.gif', alt: '★雷比的朋友★' },
+        { src: 'https://img.nloln.de/v2/3D6nXra.gif', alt: '★卡茲諾的朋友★' },
+        { src: 'https://img.nloln.de/v2/ltNZVlv.gif', alt: '★穆亞的朋友★' },
+        { src: 'https://img.nloln.de/v2/z8eIq4Z.gif', alt: '★黑月公主的朋友★' },
+        { src: 'https://img.nloln.de/v2/4QZodyR.gif', alt: '★範繼宇的朋友★' }
+      ]},
+      { id: 'grid-winter', title: '開心過冬', items: [
+        { src: 'https://img.nloln.de/v2/kOtQRe4.gif', alt: '頌歌達人' },
+        { src: 'https://img.nloln.de/v2/qn50q5A.gif', alt: '雪橇騎士' },
+        { src: 'https://img.nloln.de/v2/dLmn3rO.gif', alt: '仁慈的小氣鬼' },
+        { src: 'https://img.nloln.de/v2/CEtYXW8.gif', alt: '悠閒的聖誕老人' }
+      ]},
+      { id: 'grid-hunter', title: '獵人', items: [
+        { src: 'https://img.nloln.de/v2/HKDTR0J.gif', alt: '菜鳥獵人' },
+        { src: 'https://img.nloln.de/v2/yrJR29y.gif', alt: '初級獵人' },
+        { src: 'https://img.nloln.de/v2/LIGsg9Z.gif', alt: '中級獵人' },
+        { src: 'https://img.nloln.de/v2/giufDna.gif', alt: '高級獵人' },
+        { src: 'https://img.nloln.de/v2/1wqMMb3.gif', alt: '特級獵人' },
+        { src: 'https://img.nloln.de/v2/zRNWDhu.gif', alt: '精通獵人' },
+        { src: 'https://img.nloln.de/v2/Culcdfd.gif', alt: '最高級獵人' }
+      ]},
+      { id: 'grid-firstclass', title: '世界第一等', items: [
+        { src: 'https://img.nloln.de/v2/5dWb2Pr.gif', alt: '初級兔子' },
+        { src: 'https://img.nloln.de/v2/ZE8fhCY.gif', alt: '中級兔子' },
+        { src: 'https://img.nloln.de/v3/wZXycWpR~916-010-01-01-STAND.gif', alt: '高級兔子' },
+        { src: 'https://img.nloln.de/v2/YvU9UTe.gif', alt: '頂級兔子' },
+        { src: 'https://img.nloln.de/v2/mOeV7Gc.gif', alt: '超高級兔子' }
+      ]},
+      { id: 'grid-weekly', title: '征服每週挑戰！', items: [
+        { src: 'https://img.nloln.de/v2/yhiEpXu.gif', alt: '每週挑戰征服者[初級]' },
+        { src: 'https://img.nloln.de/v2/Hw2WC8O.gif', alt: '每週挑戰征服者[中級]' },
+        { src: 'https://img.nloln.de/v2/Vax4ZXW.gif', alt: '每週挑戰征服者[高級]' },
+        { src: 'https://img.nloln.de/v2/Nvbkm0l.gif', alt: '每週挑戰大師' }
+      ]},
+      { id: 'grid-fame1', title: '聲望正在大肆盛行！', items: [
+        { src: 'https://img.nloln.de/v2/ZTiwSpN.gif', alt: '黑月部族' },
+        { src: 'https://img.nloln.de/v2/sanxXSf.gif', alt: '吉恩蒂亞' },
+        { src: 'https://img.nloln.de/v2/jmdwd0p.gif', alt: '普雷伊奧斯' },
+        { src: 'https://img.nloln.de/v2/ec1UDv6.gif', alt: '特洛里' },
+        { src: 'https://img.nloln.de/v2/clTwBQZ.gif', alt: '光之聯合' }
+      ]},
+      { id: 'grid-fame2', title: '你的聲望如何了？', items: [
+        { src: 'https://img.nloln.de/v2/AOiHu3q.gif', alt: '星星守護者的後裔' },
+        { src: 'https://img.nloln.de/v3/Rp2Z9PWX~2501-010-01-01-STAND.gif', alt: '暴風監視者新手' },
+        { src: 'https://img.nloln.de/v2/N5ZUE5Z.gif', alt: '無限迴廊新手' },
+        { src: 'https://img.nloln.de/v2/cp1P9Ci.gif', alt: '圖書館愛好者' },
+        { src: 'https://img.nloln.de/v3/pjwh4r4p~2801-010-01-01-STAND.gif', alt: '銀色爪子' }
+      ]},
+      { id: 'grid-gambler', title: '賭徒', items: [
+        { src: 'https://img.nloln.de/v2/wnoyvj2.gif', alt: '骰子之王' },
+        { src: 'https://img.nloln.de/v2/V3GuSdY.gif', alt: '骰子貴族' },
+        { src: 'https://img.nloln.de/v2/7s9THxY.gif', alt: '骰子之神' }
+      ]},
+      { id: 'grid-guildquest', title: '公會任務大師', items: [
+        { src: 'https://img.nloln.de/v2/m8z9XCj.gif', alt: '公會任務王' },
+        { src: 'https://img.nloln.de/v2/wC6RVFH.gif', alt: '公會商品王' },
+        { src: 'https://img.nloln.de/v2/3G0OY1X.gif', alt: '公會簽到王' },
+        { src: 'https://img.nloln.de/v2/rf29Fy1.gif', alt: '公會幸運王' }
+      ]},
+      { id: 'grid-guild', title: '公會', items: [
+        { src: 'https://img.nloln.de/v2/roZrUY2.gif', alt: '中立' },
+        { src: 'https://img.nloln.de/v2/07m9xBP.gif', alt: '秩序' },
+        { src: 'https://img.nloln.de/v2/mT0rdLk.gif', alt: '混沌' }
+      ]},
+      { id: 'grid-family', title: '溫暖的家人、兄弟', items: [
+        { src: 'https://img.nloln.de/v2/3My1tel.gif', alt: '媽媽' },
+        { src: 'https://img.nloln.de/v2/jGWVegL.gif', alt: '爸爸' },
+        { src: 'https://img.nloln.de/v2/oAo745B.gif', alt: '女兒' },
+        { src: 'https://img.nloln.de/v2/52rdMtK.gif', alt: '兒子' }
+      ]},
+      { id: 'grid-brothers', title: '溫暖的兄弟', items: [
+        { src: 'https://img.nloln.de/v2/vp4Uzic.gif', alt: '大哥' },
+        { src: 'https://img.nloln.de/v2/UZfq1Cg.gif', alt: '大姐' },
+        { src: 'https://img.nloln.de/v3/dsw9qKyc~956-010-01-01-STAND.gif', alt: '哥哥' },
+        { src: 'https://img.nloln.de/v2/DfiTJAJ.gif', alt: '姐姐' }
+      ]},
+      { id: 'grid-summon', title: '召喚獸交流專家', items: [
+        { src: 'https://img.nloln.de/v2/6ahiiEA.gif', alt: '神龍之信任' },
+        { src: 'https://img.nloln.de/v2/taar7I3.gif', alt: '完美掌握人工智慧！' },
+        { src: 'https://img.nloln.de/v2/yEDFJ9A.gif', alt: '嘮叨鬼寶物的朋友' },
+        { src: 'https://img.nloln.de/v2/vYSg8Hy.gif', alt: '高傲惡魔的信賴' },
+        { src: 'https://img.nloln.de/v2/x6bKRGB.gif', alt: '金錢就是一切，耶比！' },
+        { src: 'https://img.nloln.de/v2/Isi33Jj.gif', alt: '交流的證據' }
+      ]},
+      { id: 'grid-sakura', title: '[聯動]魔法少女櫻', items: [
+        { src: 'https://img.nloln.de/v2/kKw1wZ6.gif', alt: '[聯動]_庫洛魔法使' },
+        { src: 'https://img.nloln.de/v3/3yGvjxp0~1677-010-01-01-STAND.gif', alt: '[聯動]_小櫻' },
+        { src: 'https://img.nloln.de/v2/fnb2lGs.gif', alt: '[聯動]_小可' }
+      ]},
+      { id: 'grid-fx', title: 'FX稱號', items: [
+        { src: 'https://img.nloln.de/v2/lfdu7hL.gif', alt: '海賊熊' },
+        { src: 'https://img.nloln.de/v2/H8wkFyX.gif', alt: '鈕扣兔' },
+        { src: 'https://img.nloln.de/v2/z6XLsJC.gif', alt: '銀河' },
+        { src: 'https://img.nloln.de/v2/nA4KaTU.gif', alt: '衝浪胖胖耶比' },
+        { src: 'https://img.nloln.de/v2/mc9BwQf.gif', alt: '萊菲卡' },
+        { src: 'https://img.nloln.de/v3/hJy4cG9d~1584-010-01-01-STAND.gif', alt: '狗狗汪汪汪' },
+        { src: 'https://img.nloln.de/v2/TPQ71m3.gif', alt: 'Good_night' },
+        { src: 'https://img.nloln.de/v3/5gQrkZGH~1438-ROSE-010-01-01-STAND.gif', alt: 'ROSE' },
+        { src: 'https://img.nloln.de/v2/mBowJSa.gif', alt: '蜜蜂嗡嗡' },
+        { src: 'https://img.nloln.de/v2/H7tJciL.gif', alt: 'CHOCOLATE' },
+        { src: 'https://img.nloln.de/v2/T2ryDXU.gif', alt: 'AURORA' },
+        { src: 'https://img.nloln.de/v3/KxpcfVmT~1545-DEMI-GOD-010-01-01-STAND.gif', alt: 'DEMI_GOD' },
+        { src: 'https://img.nloln.de/v2/6LWQjza.gif', alt: 'FLY_TO_THE_MOON' },
+        { src: 'https://img.nloln.de/v2/lixxWEa.gif', alt: 'SUMMER_STORY' },
+        { src: 'https://img.nloln.de/v2/VzVKzWQ.gif', alt: 'Sweet_Monster' },
+        { src: 'https://img.nloln.de/v2/wWwlOh9.gif', alt: '艾露拉' },
+        { src: 'https://img.nloln.de/v2/UjZisGH.gif', alt: '毛球' },
+        { src: 'https://img.nloln.de/v2/xtaD3qs.gif', alt: '水墨畫' },
+        { src: 'https://img.nloln.de/v2/E04KgNu.gif', alt: '士兵玩偶' },
+        { src: 'https://img.nloln.de/v2/slJnhAO.gif', alt: 'RETRO' },
+        { src: 'https://img.nloln.de/v2/S0jN1Vs.gif', alt: 'Cute_Heart' },
+        { src: 'https://img.nloln.de/v2/rMs2KbC.gif', alt: '傑芮尼斯魔法學院' },
+        { src: 'https://img.nloln.de/v2/KczjK9P.gif', alt: 'YOMI' },
+        { src: 'https://img.nloln.de/v2/TPhqvMg.gif', alt: 'DEVIL' },
+        { src: 'https://img.nloln.de/v2/5AkTHB6.gif', alt: '熱騰騰耶比妹妹' }
+      ]},
+      { id: 'grid-tower1', title: '證明之塔 I', items: [
+        { src: 'https://img.nloln.de/v2/aio8m4q.gif', alt: '證明之塔I 1' },
+        { src: 'https://img.nloln.de/v2/TegrQn4.gif', alt: '證明之塔I 2' },
+        { src: 'https://img.nloln.de/v2/lJUNbIR.gif', alt: '證明之塔I 3' }
+      ]},
+      { id: 'grid-tower2', title: '證明之塔 II', items: [
+        'WNpA6u7','0Z1BwIa','Gu0xW8M','in0d4pK','5febXbZ','aec1Oy7','c9iF9qI','TJ0Dc8P','yNzOdZ6','FwlkQ8i',
+        'hUyqVUU','CrIUxQP','Vf3ccZT','oiPJcRF','up8xH1O','REcwfFV','xF4y09W','Ml0jPWC','Hbd28Dc','hgNJyvC',
+        'JOhiW9v','FOMdeu4','MjlaB8u','p1rWrDe','O4o1qyV','Ziwj9ZC','h42Pvft','s6Drrj8','9glk1yI','zMHBFN2',
+        'FbjOPih','l63j5eE','Y2O4ro1','fp91u7c','9elyhOs','k70a9Hz','Cfc1zYT','9QXb1WC','HfrzgPk','eOndhZi',
+        'p8htRqC','Qa8PJpP','eBhipZr','QKHPyPh','xtrLqpg'
+      ].map(function (code, i) {
+        return { src: 'https://img.nloln.de/v2/' + code + '.gif', alt: '證明之塔II 第' + (i + 1) + '級' };
+      })},
+      { id: 'grid-other-long', title: '其他（长）', items: [
+        '4Kw0k4p','6Fy9K3z','li3uw0x','hxXqhfv','3iHsKXx','O6StYxx','Hopcgcm','n8zuJa5','kGnhMEE','CLSO6cI',
+        'To2Lmim','H5DYnAB','t5ex2au','b4ho57z','0oNnVt7','CGHrrNg','BsWLJY6','Cq6rfjd','limy6uF','Bd2c7Ih',
+        'bZnJDMF','gPAdYiq','jZ5TfK9','MRLx6WV','Uedj7yu','9Yr7uY9','CsuEOcT','2uFMM6Q','9bhHGH1','N9jsqR7',
+        'I2KFRdH','ZhXHlfI','YniRwts','hTBVo1d','o9M3SAV','cz8WyEW','o7JamDQ','4nqcreU','Zp12b9j','phRCEc6',
+        'JfUh8BC','7Rd5Fae','eKXcbec','DKUriId','oR8DtZw','ObOVgjV','NwF5Lmk','I6Meu38','6b9HD9n','UD9ggHH',
+        'B60GvVd','0eLQ6of','jdaoRZF','2wVUtwJ','Ap5nXmb'
+      ].map(function (code, i) {
+        return { src: 'https://img.nloln.de/v2/' + code + '.gif', alt: '其他稱號 ' + (i + 1) };
+      })},
+      { id: 'grid-other-square', title: '其他（方）', items: [
+        'https://img.nloln.de/v3/whh8SdYr~1360-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/RpgzK9qw~1388-WEDDING-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/cP3Hv7N~1417-9999-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/r2y1NPTv~1542-GATE-KEEPER-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/chkyX9Px~1557-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/jcVghYf~1567-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/nN8hWMLn~1687-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/7xjYyV8S~1719-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/7NLdRKrB~1721-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/RG43rG3g~1725-010-01-01-STAND.gif'
+      ].map(function (src, i) { return { src: src, alt: '方形稱號 ' + (i + 1) }; })},
+      { id: 'grid-other-wide', title: '其他（宽）', items: [
+        'https://img.nloln.de/v3/nspngqBV~1059-The-Best-Level-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/rKdM9ftp~1061-HAPPY-HAPPY-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/QvY4HjxX~1331-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/0j2H32rv~1340-JEWEL-STAR-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/ZRyR97Hj~1347-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/x83dJKy4~1392-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/XrrvNPJm~1400-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/j9rtjws0~1449-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/hFkLf4Xp~1452-LABOOM-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/YFMxTzfq~1482-Autumn-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/1cdfR7q~1499-WINDIA-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/ZppfDR0T~1508-RAINIA-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/GfmcJNmp~1510-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/zT3FrTr2~1597-Butterfly-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/8DPrqHtV~1607-WINTER-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/KjYfSyvH~1611-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/v65hLg41~1633-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/5WVxVwZ9~1702-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/NdJhk4NM~1727-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/yn90859s~1740-SANRIO-CHARACTERS-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/8DfcXDmS~20042-TOP-FAN-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/nqqQfQNY~20049-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/spT3qsZF~20061-010-01-01-STAND.gif'
+      ].map(function (src, i) { return { src: src, alt: '寬幅稱號 ' + (i + 1) }; })},
+      { id: 'grid-season', title: '賽季', items: [
+        'https://img.nloln.de/v3/0p8w3rsx~1418-1-Master-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/Sw2DgpJ8~1419-1-Diamond-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/rGq8XrqB~1420-1-Platinum-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/gLftRqB3~1421-1-Gold-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/7xz1B48N~1422-1-Silver-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/WNVftSz3~1423-1-Bronze-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/xtQHWqBR~1485-2-Master-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/35gpMRXZ~1486-2-Diamond-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/fGvj66xF~1487-2-Platinum-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/NnsS8m2K~1488-2-Gold-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/DfhLgLsx~1489-2-Silver-010-01-01-STAND.gif',
+        'https://img.nloln.de/v3/pv2MQq1F~1490-2-Bronze-010-01-01-STAND.gif'
+      ].map(function (src, i) {
+        return { src: src, alt: '賽季稱號 ' + (i + 1) };
+      })},
+      { id: 'grid-member', title: '會員', items: [
+        { src: 'https://img.nloln.de/v3/fVXfDX85~20037-VIP-010-01-01-STAND.gif', alt: 'VIP 1' },
+        { src: 'https://img.nloln.de/v3/qMQVy2vs~20038-VIP-010-01-01-STAND.gif', alt: 'VIP 2' }
+      ]},
+      { id: 'grid-challenge', title: '挑戰', items: [
+        { src: 'https://img.nloln.de/v3/jvq6RDbs~1723-Survive-Master-010-01-01-STAND.gif', alt: 'Survive Master' },
+        { src: 'https://img.nloln.de/v3/Wv1Hhf4D~1724-Time-Attack-Master-010-01-01-STAND.gif', alt: 'Time Attack Master' }
+      ]},
+      { id: 'grid-god', title: '與神同行Part.1', items: [
+        { src: 'https://img.nloln.de/v3/rK40RT1X~903-010-01-01-STAND.gif', alt: '與神同行 Part.1' }
+      ]}
+    ];
 
-        // 设置平滑收起时的最大高度，展开后移除限制以便内容自适应
-        function unlockHeight() {
-          grid.style.maxHeight = 'none';
-        }
-        function lockHeight() {
-          grid.style.maxHeight = grid.scrollHeight + 'px';
-        }
+    // ============ 渲染（无折叠） ============
+    (function render() {
+      var root = document.getElementById('sections');
+      var frag = document.createDocumentFragment();
 
-        // 初始展开：移除 max-height 限制
-        if (!grid.classList.contains('collapsed')) {
-          grid.style.maxHeight = 'none';
-        }
+      SECTIONS.forEach(function (section) {
+        var h2 = document.createElement('h2');
+        h2.className = 'section-title';
+        h2.id = section.id + '-title';
+        h2.textContent = section.title;
 
-        title.addEventListener('click', function () {
-          var id = this.getAttribute('data-target');
-          var target = document.getElementById(id);
-          if (!target) return;
+        var grid = document.createElement('div');
+        grid.className = 'gif-grid';
+        grid.id = section.id;
+        grid.setAttribute('role', 'group');
+        grid.setAttribute('aria-label', section.title);
 
-          var isCollapsed = target.classList.contains('collapsed');
+        var cardsFrag = document.createDocumentFragment();
+        section.items.forEach(function (item) {
+          var card = document.createElement('div');
+          card.className = 'gif-card';
 
-          if (isCollapsed) {
-            // 展开
-            target.classList.remove('collapsed');
-            // 先设为具体高度以便触发动画
-            target.style.maxHeight = target.scrollHeight + 'px';
-            this.classList.remove('collapsed');
-            // 动画结束后释放高度限制
-            var onEnd = function (e) {
-              if (e.propertyName === 'max-height') {
-                target.style.maxHeight = 'none';
-                target.removeEventListener('transitionend', onEnd);
-              }
-            };
-            target.addEventListener('transitionend', onEnd);
-            // 兜底：若 transitionend 未触发，400ms 后释放
-            setTimeout(function () {
-              if (!target.classList.contains('collapsed')) {
-                target.style.maxHeight = 'none';
-              }
-            }, 400);
-          } else {
-            // 收起
-            target.style.maxHeight = target.scrollHeight + 'px';
-            // 强制回流后设为 0
-            void target.offsetHeight;
-            target.classList.add('collapsed');
-            target.style.maxHeight = '0px';
-            this.classList.add('collapsed');
-          }
+          var img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.alt || '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.draggable = false;
+          img.addEventListener('error', function onErr() {
+            img.removeEventListener('error', onErr);
+            img.classList.add('is-broken');
+            img.alt = (img.alt || '图片') + '（加载失败）';
+            img.removeAttribute('src');
+          });
+
+          card.appendChild(img);
+          cardsFrag.appendChild(card);
         });
+
+        grid.appendChild(cardsFrag);
+        frag.appendChild(h2);
+        frag.appendChild(grid);
+      });
+
+      root.appendChild(frag);
+    })();
+
+    // 禁用图片右键/拖拽
+    document.addEventListener('contextmenu', function (e) {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function (e) {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    // ============ 星空背景（原生 Canvas 手写） ============
+    (function starfield() {
+      var canvas = document.getElementById('starfield');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var w = 0, h = 0, dpr = 1;
+      var stars = [];
+      var shootingStars = [];
+      var rafId = null;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // 星点数量按屏幕面积计算，控制在合理范围
+      function calcStarCount() {
+        var area = w * h;
+        return Math.min(420, Math.max(120, Math.round(area / 6000)));
       }
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        initStars();
+      }
+
+      function initStars() {
+        stars = [];
+        var count = calcStarCount();
+        for (var i = 0; i < count; i++) {
+          stars.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.4 + 0.3,          // 半径
+            baseAlpha: Math.random() * 0.5 + 0.3,  // 基础亮度
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            phase: Math.random() * Math.PI * 2,
+            depth: Math.random() * 0.8 + 0.2,      // 视差深度
+            hue: Math.random() < 0.15 ? 220 : 0,   // 少量偏蓝星
+            driftX: (Math.random() - 0.5) * 0.06,
+            driftY: (Math.random() - 0.5) * 0.06
+          });
+        }
+      }
+
+      var lastTime = 0;
+      function draw(now) {
+        if (!lastTime) lastTime = now;
+        var dt = Math.min(now - lastTime, 50);
+        lastTime = now;
+
+        // 深空底色（轻微径向渐变，中心稍亮）
+        var grad = ctx.createRadialGradient(w * 0.5, h * 0.35, 0, w * 0.5, h * 0.5, Math.max(w, h) * 0.75);
+        grad.addColorStop(0, '#0b1230');
+        grad.addColorStop(0.55, '#070b18');
+        grad.addColorStop(1, '#03050d');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        // 星星
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          s.phase += s.twinkleSpeed * (dt / 16.67);
+          if (!reduceMotion) {
+            s.x += s.driftX * s.depth;
+            s.y += s.driftY * s.depth;
+            // 边界循环
+            if (s.x < -2) s.x = w + 2;
+            if (s.x > w + 2) s.x = -2;
+            if (s.y < -2) s.y = h + 2;
+            if (s.y > h + 2) s.y = -2;
+          }
+
+          var alpha = s.baseAlpha + Math.sin(s.phase) * 0.28;
+          if (alpha < 0.05) alpha = 0.05;
+          if (alpha > 1) alpha = 1;
+
+          var color = s.hue === 220
+            ? 'rgba(170, 190, 255,' + alpha + ')'
+            : 'rgba(255, 255, 255,' + alpha + ')';
+
+          // 光晕
+          if (s.r > 1) {
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r * 2.6, 0, Math.PI * 2);
+            ctx.fillStyle = s.hue === 220
+              ? 'rgba(140, 170, 255,' + (alpha * 0.12) + ')'
+              : 'rgba(200, 220, 255,' + (alpha * 0.12) + ')';
+            ctx.fill();
+          }
+
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill();
+        }
+
+        // 流星（低频触发）
+        if (!reduceMotion && Math.random() < 0.003) {
+          shootingStars.push({
+            x: Math.random() * w * 0.7,
+            y: Math.random() * h * 0.4,
+            len: Math.random() * 120 + 80,
+            speed: Math.random() * 6 + 6,
+            angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
+            life: 1
+          });
+        }
+
+        for (var j = shootingStars.length - 1; j >= 0; j--) {
+          var m = shootingStars[j];
+          m.x += Math.cos(m.angle) * m.speed * (dt / 16.67);
+          m.y += Math.sin(m.angle) * m.speed * (dt / 16.67);
+          m.life -= 0.012 * (dt / 16.67);
+
+          if (m.life <= 0 || m.x > w + 100 || m.y > h + 100) {
+            shootingStars.splice(j, 1);
+            continue;
+          }
+
+          var tx = m.x - Math.cos(m.angle) * m.len;
+          var ty = m.y - Math.sin(m.angle) * m.len;
+          var lg = ctx.createLinearGradient(m.x, m.y, tx, ty);
+          lg.addColorStop(0, 'rgba(255,255,255,' + Math.max(0, m.life) + ')');
+          lg.addColorStop(1, 'rgba(255,255,255,0)');
+          ctx.strokeStyle = lg;
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.moveTo(m.x, m.y);
+          ctx.lineTo(tx, ty);
+          ctx.stroke();
+        }
+
+        rafId = requestAnimationFrame(draw);
+      }
+
+      // 页面隐藏时暂停，节省资源
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        } else {
+          lastTime = 0;
+          if (!rafId) rafId = requestAnimationFrame(draw);
+        }
+      });
+
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 150);
+      });
+
+      resize();
+      rafId = requestAnimationFrame(draw);
     })();
   </script>
 </body>
