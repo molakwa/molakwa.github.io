@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>葉南星的主页 | 彩虹島稱號收藏</title>
+  <title>葉南星的主頁 | 彩虹島稱號收藏</title>
   <meta name="description" content="葉南星的彩虹島（Latale）稱號收藏主頁，收錄主職業、副職業、活動、賽季等稱號。">
   <meta name="theme-color" content="#070b18">
-  <meta property="og:title" content="葉南星的主页">
+  <meta property="og:title" content="葉南星的主頁">
   <meta property="og:description" content="彩虹島（Latale）稱號收藏">
   <meta property="og:image" content="https://img.nloln.de/v2/MDVYPRl.jpeg">
   <link rel="icon" href="https://latale.com.cn/content/uploadfile/202511/d2cd1764313704.png">
@@ -62,11 +62,19 @@
       width: 100%;
     }
 
-    /* ===== 个人资料 ===== */
+    /* ===== 個人資料 ===== */
     .profile-header {
+      position: relative;
       padding: 32px 24px 28px;
       text-align: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      border-radius: 0;
+    }
+
+    .profile-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .avatar-wrapper {
@@ -106,7 +114,7 @@
       margin-left: 8px;
     }
 
-    /* ===== 区块标题（静态，不可折叠） ===== */
+    /* ===== 區塊標題（靜態，不可折疊） ===== */
     .section-title {
       font-size: 1.3rem;
       font-weight: 500;
@@ -131,7 +139,7 @@
       flex-shrink: 0;
     }
 
-    /* ===== GIF 网格（静态展示） ===== */
+    /* ===== GIF 網格（靜態展示） ===== */
     .gif-grid {
       margin: 0 20px 8px;
       padding: 24px 20px;
@@ -213,7 +221,7 @@
       border-bottom-color: var(--accent-soft);
     }
 
-    /* ===== 页脚 ===== */
+    /* ===== 頁腳 ===== */
     .footer {
       text-align: center;
       padding: 22px 24px 28px;
@@ -247,7 +255,7 @@
       vertical-align: middle;
     }
 
-    /* ===== 响应式（降序排列） ===== */
+    /* ===== 響應式（降序排列） ===== */
     @media (max-width: 900px) {
       .gif-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
     }
@@ -276,6 +284,117 @@
         animation-duration: 0.01ms !important;
       }
     }
+
+    /* ===== 右下角訪問人數（固定） ===== */
+    .visitor-counter {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(10, 14, 30, 0.78);
+      border: 1px solid rgba(150, 160, 255, 0.35);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), 0 0 18px rgba(108, 108, 238, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      user-select: none;
+      pointer-events: auto;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .visitor-counter:hover {
+      transform: translateY(-2px);
+      border-color: rgba(150, 160, 255, 0.65);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 26px rgba(108, 108, 238, 0.4);
+    }
+    .visitor-counter .vc-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #58ffb1;
+      box-shadow: 0 0 8px rgba(88, 255, 177, 0.9);
+      flex-shrink: 0;
+      animation: vc-pulse 2s ease-in-out infinite;
+    }
+    .visitor-counter .vc-label {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+    .visitor-counter .vc-number {
+      font-family: 'Segoe UI', 'Consolas', monospace;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #ffffff;
+      min-width: 4ch;
+      text-align: right;
+      text-shadow: 0 0 10px rgba(108, 108, 238, 0.85);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    @keyframes vc-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.8); }
+    }
+
+    @media (max-width: 500px) {
+      .visitor-counter {
+        right: 10px;
+        bottom: 10px;
+        padding: 8px 12px;
+        gap: 7px;
+        font-size: 0.8rem;
+      }
+      .visitor-counter .vc-label { font-size: 0.72rem; }
+      .visitor-counter .vc-number { font-size: 0.92rem; }
+    }
+
+    /* ===== 全寬頭像背景橫幅（貫通整個頁面寬度） ===== */
+    .page-banner {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 100%;
+      background-image: url("https://img.nloln.de/v2/fFXyHkL.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(7, 11, 24, 0.30) 0%,
+        rgba(7, 11, 24, 0.50) 55%,
+        rgba(7, 11, 24, 0.70) 100%
+      );
+    }
+
+    /* 让 profile-header 成为横幅的定位容器 */
+    .banner-wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      overflow: visible;
+    }
+
+    /* 手机端：横幅高度稍微缩小一点，避免过大 */
+    @media (max-width: 640px) {
+      .page-banner { background-position: center top; }
+    }
   </style>
 </head>
 <body>
@@ -283,17 +402,24 @@
   <canvas id="starfield" aria-hidden="true"></canvas>
 
   <div class="card">
-    <div class="profile-header">
-      <div class="avatar-wrapper">
-        <img
-          src="https://img.nloln.de/v2/MDVYPRl.jpeg"
-          alt="葉南星头像"
-          loading="lazy"
-          decoding="async"
-          draggable="false"
-        >
+    <div class="banner-wrap">
+      <!-- 全宽头像背景横幅：贯通整个页面宽度 -->
+      <div class="page-banner" aria-hidden="true"></div>
+
+      <div class="profile-header">
+        <div class="profile-inner">
+          <div class="avatar-wrapper">
+            <img
+              src="https://img.nloln.de/v2/MDVYPRl.jpeg"
+              alt="葉南星頭像"
+              loading="lazy"
+              decoding="async"
+              draggable="false"
+            >
+          </div>
+          <div class="profile-name">葉南星 <small></small></div>
+        </div>
       </div>
-      <div class="profile-name">葉南星 <small></small></div>
     </div>
 
     <div id="sections"></div>
@@ -306,53 +432,60 @@
     </div>
 
     <div class="footer">
-      <p>版权所有 © <a href="mailto:a961545828@gmail.com">a961545828@gmail.com</a></p>
+      <p>版權所有 © <a href="mailto:a961545828@gmail.com">a961545828@gmail.com</a></p>
       <p>
         <span class="sep"></span>
-        <a href="https://space.bilibili.com/102740832" target="_blank" rel="noopener noreferrer">B站主页</a>
+        <a href="https://space.bilibili.com/102740832" target="_blank" rel="noopener noreferrer">B站主頁</a>
         <span class="sep"></span>
       </p>
     </div>
   </div>
 
+  <!-- 右下角訪問人數 -->
+  <div class="visitor-counter" id="visitorCounter" title="本站訪問人數">
+    <span class="vc-dot"></span>
+    <span class="vc-label">訪問人數</span>
+    <span class="vc-number" id="visitorCount">0</span>
+  </div>
+
   <script>
-    // ============ 数据（与原版一致） ============
+    // ============ 數據（與原版一致） ============
     var SECTIONS = [
       { id: 'grid-main', title: '主職業', items: [
-        { src: 'https://img.nloln.de/v2/Ty7YJMb.gif', alt: '黑暗追击者' },
-        { src: 'https://img.nloln.de/v2/9ZyEi9u.gif', alt: '命运守护者' },
+        { src: 'https://img.nloln.de/v2/Ty7YJMb.gif', alt: '黑暗追擊者' },
+        { src: 'https://img.nloln.de/v2/9ZyEi9u.gif', alt: '命運守護者' },
         { src: 'https://img.nloln.de/v2/yttkajB.gif', alt: '風之潛行者' },
-        { src: 'https://img.nloln.de/v2/bysiQ1j.gif', alt: '弧形大师' },
-        { src: 'https://img.nloln.de/v2/y9T1dDW.gif', alt: '暴力大师' },
+        { src: 'https://img.nloln.de/v2/bysiQ1j.gif', alt: '弓形大師' },
+        { src: 'https://img.nloln.de/v2/y9T1dDW.gif', alt: '暴力大師' },
         { src: 'https://img.nloln.de/v2/mQD00iR.gif', alt: '混血天神' },
-        { src: 'https://img.nloln.de/v2/68QAwcb.gif', alt: '闇影武士' },
-        { src: 'https://img.nloln.de/v2/2ycMgNK.gif', alt: '天之王者' },
-        { src: 'https://img.nloln.de/v2/YTxw8d4.gif', alt: '幻武剑豪' },
+        { src: 'https://img.nloln.de/v2/68QAwcb.gif', alt: '鬥影武士' },
+        { src: 'https://img.nloln.de/v2/2ycMgNK.gif', alt: '天之王座' },
+        { src: 'https://img.nloln.de/v2/YTxw8d4.gif', alt: '幻武劍豪' },
         { src: 'https://img.nloln.de/v2/Xd9mjWw.gif', alt: '諸神使者' },
         { src: 'https://img.nloln.de/v2/mpN40oJ.gif', alt: '流行天王' },
-        { src: 'https://img.nloln.de/v2/mdOVX9Z.gif', alt: '裁決射手' },
+        { src: 'https://img.nloln.de/v2/mdOVX9Z.gif', alt: '裁判射手' },
         { src: 'https://img.nloln.de/v2/rfJ8xVN.gif', alt: '究極兵甲' },
         { src: 'https://img.nloln.de/v2/XfJjC84.gif', alt: '暗影行者' },
         { src: 'https://img.nloln.de/v2/ckU6s4v.gif', alt: '大毀滅者' },
-        { src: 'https://img.nloln.de/v2/Hr4SMd6.gif', alt: '妖术師' },
-        { src: 'https://img.nloln.de/v2/G4NugpB.gif', alt: '炙焰天' },
+        { src: 'https://img.nloln.de/v2/Hr4SMd6.gif', alt: '妖術師' },
+        { src: 'https://img.nloln.de/v2/G4NugpB.gif', alt: '炙炎天' },
         { src: 'https://img.nloln.de/v2/ErIcsgh.gif', alt: '創世主' },
-        { src: 'https://img.nloln.de/v2/rWOPnhp.gif', alt: '弒魂者' },
-        { src: 'https://img.nloln.de/v2/phITSfy.gif', alt: '剑圣' }
+        { src: 'https://img.nloln.de/v2/rWOPnhp.gif', alt: '弓魂者' },
+        { src: 'https://img.nloln.de/v2/phITSfy.gif', alt: '劍聖' }
       ]},
       { id: 'grid-sub', title: '副職業', items: [
-        { src: 'https://img.nloln.de/v2/jSQxStC.gif', alt: '魂之勇者' },
-        { src: 'https://img.nloln.de/v2/S5taNZh.gif', alt: '劍刃舞者' },
+        { src: 'https://img.nloln.de/v2/jSQxStC.gif', alt: '魂之勇士' },
+        { src: 'https://img.nloln.de/v2/S5taNZh.gif', alt: '劫刃舞者' },
         { src: 'https://img.nloln.de/v2/TpffCp6.gif', alt: '恐懼騎士' },
-        { src: 'https://img.nloln.de/v2/M401gr2.gif', alt: '音樂大師' },
+        { src: 'https://img.nloln.de/v2/M401gr2.gif', alt: '音律大師' },
         { src: 'https://img.nloln.de/v2/1U0JSPb.gif', alt: '忍者大師' },
         { src: 'https://img.nloln.de/v2/XsbUGvs.gif', alt: '改造大師' },
         { src: 'https://img.nloln.de/v2/KGxSG75.gif', alt: '寶石之星' },
         { src: 'https://img.nloln.de/v2/APB2ek5.gif', alt: '御風引者' },
-        { src: 'https://img.nloln.de/v2/dfkxdLS.gif', alt: '喚雨淨使' },
+        { src: 'https://img.nloln.de/v2/dfkxdLS.gif', alt: '喚雨淋使' },
         { src: 'https://img.nloln.de/v2/61aNqtZ.gif', alt: '幻術師' },
         { src: 'https://img.nloln.de/v2/9YfBpt7.gif', alt: '審判者' },
-        { src: 'https://img.nloln.de/v2/xOj249p.gif', alt: '鬥神' }
+        { src: 'https://img.nloln.de/v2/xOj249p.gif', alt: '馭神' }
       ]},
       { id: 'grid-newyear', title: '新年', items: [
         { src: 'https://img.nloln.de/v2/1V31gy1.gif', alt: '新年' },
@@ -378,19 +511,19 @@
         { src: 'https://img.nloln.de/v2/ZLAXR4Q.gif', alt: '超級瑪琍傳說' }
       ]},
       { id: 'grid-vvip', title: 'VVIP', items: [
-        { src: 'https://img.nloln.de/v2/xHh1q5o.gif', alt: '衝鋒陷陣大王' },
-        { src: 'https://img.nloln.de/v2/fTwGaqs.gif', alt: '衝鋒陷陣之神' },
-        { src: 'https://img.nloln.de/v2/9Diu1J1.gif', alt: '衝鋒陷陣高手' },
-        { src: 'https://img.nloln.de/v2/qZL959D.gif', alt: '衝鋒陷陣達人' },
-        { src: 'https://img.nloln.de/v2/jwgzzx3.gif', alt: '衝鋒陷陣的祝福' }
+        { src: 'https://img.nloln.de/v2/xHh1q5o.gif', alt: '衛鋒陷陣大王' },
+        { src: 'https://img.nloln.de/v2/fTwGaqs.gif', alt: '衛鋒陷陣之神' },
+        { src: 'https://img.nloln.de/v2/9Diu1J1.gif', alt: '衛鋒陷陣高手' },
+        { src: 'https://img.nloln.de/v2/qZL959D.gif', alt: '衛鋒陷陣達人' },
+        { src: 'https://img.nloln.de/v2/jwgzzx3.gif', alt: '衛鋒陷陣的祝福' }
       ]},
       { id: 'grid-expedition', title: '彩虹島遠征隊', items: [
         { src: 'https://img.nloln.de/v2/19oIYJV.gif', alt: '★愛麗絲的朋友★' },
         { src: 'https://img.nloln.de/v2/eQuAo1y.gif', alt: '★雷比的朋友★' },
-        { src: 'https://img.nloln.de/v2/3D6nXra.gif', alt: '★卡茲諾的朋友★' },
+        { src: 'https://img.nloln.de/v2/3D6nXra.gif', alt: '★卡蓮娜的朋友★' },
         { src: 'https://img.nloln.de/v2/ltNZVlv.gif', alt: '★穆亞的朋友★' },
         { src: 'https://img.nloln.de/v2/z8eIq4Z.gif', alt: '★黑月公主的朋友★' },
-        { src: 'https://img.nloln.de/v2/4QZodyR.gif', alt: '★範繼宇的朋友★' }
+        { src: 'https://img.nloln.de/v2/4QZodyR.gif', alt: '★範統宇的朋友★' }
       ]},
       { id: 'grid-winter', title: '開心過冬', items: [
         { src: 'https://img.nloln.de/v2/kOtQRe4.gif', alt: '頌歌達人' },
@@ -408,11 +541,11 @@
         { src: 'https://img.nloln.de/v2/Culcdfd.gif', alt: '最高級獵人' }
       ]},
       { id: 'grid-firstclass', title: '世界第一等', items: [
-        { src: 'https://img.nloln.de/v2/5dWb2Pr.gif', alt: '初級兔子' },
-        { src: 'https://img.nloln.de/v2/ZE8fhCY.gif', alt: '中級兔子' },
-        { src: 'https://img.nloln.de/v3/wZXycWpR~916-010-01-01-STAND.gif', alt: '高級兔子' },
-        { src: 'https://img.nloln.de/v2/YvU9UTe.gif', alt: '頂級兔子' },
-        { src: 'https://img.nloln.de/v2/mOeV7Gc.gif', alt: '超高級兔子' }
+        { src: 'https://img.nloln.de/v2/5dWb2Pr.gif', alt: '初級乞丐' },
+        { src: 'https://img.nloln.de/v2/ZE8fhCY.gif', alt: '中級乞丐' },
+        { src: 'https://img.nloln.de/v3/wZXycWpR~916-010-01-01-STAND.gif', alt: '高級乞丐' },
+        { src: 'https://img.nloln.de/v2/YvU9UTe.gif', alt: '頂級乞丐' },
+        { src: 'https://img.nloln.de/v2/mOeV7Gc.gif', alt: '超高級乞丐' }
       ]},
       { id: 'grid-weekly', title: '征服每週挑戰！', items: [
         { src: 'https://img.nloln.de/v2/yhiEpXu.gif', alt: '每週挑戰征服者[初級]' },
@@ -420,11 +553,11 @@
         { src: 'https://img.nloln.de/v2/Vax4ZXW.gif', alt: '每週挑戰征服者[高級]' },
         { src: 'https://img.nloln.de/v2/Nvbkm0l.gif', alt: '每週挑戰大師' }
       ]},
-      { id: 'grid-fame1', title: '聲望正在大肆盛行！', items: [
+      { id: 'grid-fame1', title: '聲望正在大聲盛行！', items: [
         { src: 'https://img.nloln.de/v2/ZTiwSpN.gif', alt: '黑月部族' },
         { src: 'https://img.nloln.de/v2/sanxXSf.gif', alt: '吉恩蒂亞' },
         { src: 'https://img.nloln.de/v2/jmdwd0p.gif', alt: '普雷伊奧斯' },
-        { src: 'https://img.nloln.de/v2/ec1UDv6.gif', alt: '特洛里' },
+        { src: 'https://img.nloln.de/v2/ec1UDv6.gif', alt: '特洛伊' },
         { src: 'https://img.nloln.de/v2/clTwBQZ.gif', alt: '光之聯合' }
       ]},
       { id: 'grid-fame2', title: '你的聲望如何了？', items: [
@@ -432,7 +565,7 @@
         { src: 'https://img.nloln.de/v3/Rp2Z9PWX~2501-010-01-01-STAND.gif', alt: '暴風監視者新手' },
         { src: 'https://img.nloln.de/v2/N5ZUE5Z.gif', alt: '無限迴廊新手' },
         { src: 'https://img.nloln.de/v2/cp1P9Ci.gif', alt: '圖書館愛好者' },
-        { src: 'https://img.nloln.de/v3/pjwh4r4p~2801-010-01-01-STAND.gif', alt: '銀色爪子' }
+        { src: 'https://img.nloln.de/v3/pjwh4r4p~2801-010-01-01-STAND.gif', alt: '銀色獅子' }
       ]},
       { id: 'grid-gambler', title: '賭徒', items: [
         { src: 'https://img.nloln.de/v2/wnoyvj2.gif', alt: '骰子之王' },
@@ -465,8 +598,8 @@
       { id: 'grid-summon', title: '召喚獸交流專家', items: [
         { src: 'https://img.nloln.de/v2/6ahiiEA.gif', alt: '神龍之信任' },
         { src: 'https://img.nloln.de/v2/taar7I3.gif', alt: '完美掌握人工智慧！' },
-        { src: 'https://img.nloln.de/v2/yEDFJ9A.gif', alt: '嘮叨鬼寶物的朋友' },
-        { src: 'https://img.nloln.de/v2/vYSg8Hy.gif', alt: '高傲惡魔的信賴' },
+        { src: 'https://img.nloln.de/v2/yEDFJ9A.gif', alt: '喜歡幽靈寵物的朋友' },
+        { src: 'https://img.nloln.de/v2/vYSg8Hy.gif', alt: '高傲情魔的信任' },
         { src: 'https://img.nloln.de/v2/x6bKRGB.gif', alt: '金錢就是一切，耶比！' },
         { src: 'https://img.nloln.de/v2/Isi33Jj.gif', alt: '交流的證據' }
       ]},
@@ -476,15 +609,15 @@
         { src: 'https://img.nloln.de/v2/fnb2lGs.gif', alt: '[聯動]_小可' }
       ]},
       { id: 'grid-fx', title: 'FX稱號', items: [
-        { src: 'https://img.nloln.de/v2/lfdu7hL.gif', alt: '海賊熊' },
-        { src: 'https://img.nloln.de/v2/H8wkFyX.gif', alt: '鈕扣兔' },
+        { src: 'https://img.nloln.de/v2/lfdu7hL.gif', alt: '海盜熊' },
+        { src: 'https://img.nloln.de/v2/H8wkFyX.gif', alt: '鈴鐺兔' },
         { src: 'https://img.nloln.de/v2/z6XLsJC.gif', alt: '銀河' },
-        { src: 'https://img.nloln.de/v2/nA4KaTU.gif', alt: '衝浪胖胖耶比' },
-        { src: 'https://img.nloln.de/v2/mc9BwQf.gif', alt: '萊菲卡' },
+        { src: 'https://img.nloln.de/v2/nA4KaTU.gif', alt: '衛浪胖胖耶比' },
+        { src: 'https://img.nloln.de/v2/mc9BwQf.gif', alt: '葵花卡' },
         { src: 'https://img.nloln.de/v3/hJy4cG9d~1584-010-01-01-STAND.gif', alt: '狗狗汪汪汪' },
-        { src: 'https://img.nloln.de/v2/TPQ71m3.gif', alt: 'Good_night' },
+        { src: 'https://img.nloln.de/v2/TPQ71m3.gif', alt: 'Good night' },
         { src: 'https://img.nloln.de/v3/5gQrkZGH~1438-ROSE-010-01-01-STAND.gif', alt: 'ROSE' },
-        { src: 'https://img.nloln.de/v2/mBowJSa.gif', alt: '蜜蜂嗡嗡' },
+        { src: 'https://img.nloln.de/v2/mBowJSa.gif', alt: '嗡嗡啦' },
         { src: 'https://img.nloln.de/v2/H7tJciL.gif', alt: 'CHOCOLATE' },
         { src: 'https://img.nloln.de/v2/T2ryDXU.gif', alt: 'AURORA' },
         { src: 'https://img.nloln.de/v3/KxpcfVmT~1545-DEMI-GOD-010-01-01-STAND.gif', alt: 'DEMI_GOD' },
@@ -493,14 +626,14 @@
         { src: 'https://img.nloln.de/v2/VzVKzWQ.gif', alt: 'Sweet_Monster' },
         { src: 'https://img.nloln.de/v2/wWwlOh9.gif', alt: '艾露拉' },
         { src: 'https://img.nloln.de/v2/UjZisGH.gif', alt: '毛球' },
-        { src: 'https://img.nloln.de/v2/xtaD3qs.gif', alt: '水墨畫' },
+        { src: 'https://img.nloln.de/v2/xtaD3qs.gif', alt: '水彩畫' },
         { src: 'https://img.nloln.de/v2/E04KgNu.gif', alt: '士兵玩偶' },
         { src: 'https://img.nloln.de/v2/slJnhAO.gif', alt: 'RETRO' },
         { src: 'https://img.nloln.de/v2/S0jN1Vs.gif', alt: 'Cute_Heart' },
-        { src: 'https://img.nloln.de/v2/rMs2KbC.gif', alt: '傑芮尼斯魔法學院' },
+        { src: 'https://img.nloln.de/v2/rMs2KbC.gif', alt: '倫敦尼姆斯魔法學院' },
         { src: 'https://img.nloln.de/v2/KczjK9P.gif', alt: 'YOMI' },
         { src: 'https://img.nloln.de/v2/TPhqvMg.gif', alt: 'DEVIL' },
-        { src: 'https://img.nloln.de/v2/5AkTHB6.gif', alt: '熱騰騰耶比妹妹' }
+        { src: 'https://img.nloln.de/v2/5AkTHB6.gif', alt: '熱駝駝耶比妹妹' }
       ]},
       { id: 'grid-tower1', title: '證明之塔 I', items: [
         { src: 'https://img.nloln.de/v2/aio8m4q.gif', alt: '證明之塔I 1' },
@@ -516,7 +649,7 @@
       ].map(function (code, i) {
         return { src: 'https://img.nloln.de/v2/' + code + '.gif', alt: '證明之塔II 第' + (i + 1) + '級' };
       })},
-      { id: 'grid-other-long', title: '其他（长）', items: [
+      { id: 'grid-other-long', title: '其他（長）', items: [
         '4Kw0k4p','6Fy9K3z','li3uw0x','hxXqhfv','3iHsKXx','O6StYxx','Hopcgcm','n8zuJa5','kGnhMEE','CLSO6cI',
         'To2Lmim','H5DYnAB','t5ex2au','b4ho57z','0oNnVt7','CGHrrNg','BsWLJY6','Cq6rfjd','limy6uF','Bd2c7Ih',
         'bZnJDMF','gPAdYiq','jZ5TfK9','MRLx6WV','Uedj7yu','9Yr7uY9','CsuEOcT','2uFMM6Q','9bhHGH1','N9jsqR7',
@@ -538,7 +671,7 @@
         'https://img.nloln.de/v3/7NLdRKrB~1721-010-01-01-STAND.gif',
         'https://img.nloln.de/v3/RG43rG3g~1725-010-01-01-STAND.gif'
       ].map(function (src, i) { return { src: src, alt: '方形稱號 ' + (i + 1) }; })},
-      { id: 'grid-other-wide', title: '其他（宽）', items: [
+      { id: 'grid-other-wide', title: '其他（寬）', items: [
         'https://img.nloln.de/v3/nspngqBV~1059-The-Best-Level-010-01-01-STAND.gif',
         'https://img.nloln.de/v3/rKdM9ftp~1061-HAPPY-HAPPY-010-01-01-STAND.gif',
         'https://img.nloln.de/v3/QvY4HjxX~1331-010-01-01-STAND.gif',
@@ -592,7 +725,7 @@
       ]}
     ];
 
-    // ============ 渲染（无折叠） ============
+    // ============ 渲染（無折疊） ============
     (function render() {
       var root = document.getElementById('sections');
       var frag = document.createDocumentFragment();
@@ -623,7 +756,7 @@
           img.addEventListener('error', function onErr() {
             img.removeEventListener('error', onErr);
             img.classList.add('is-broken');
-            img.alt = (img.alt || '图片') + '（加载失败）';
+            img.alt = (img.alt || '圖片') + '（加載失敗）';
             img.removeAttribute('src');
           });
 
@@ -639,7 +772,7 @@
       root.appendChild(frag);
     })();
 
-    // 禁用图片右键/拖拽
+    // 禁用圖片右鍵/拖拽
     document.addEventListener('contextmenu', function (e) {
       if (e.target.tagName === 'IMG') e.preventDefault();
     });
@@ -647,7 +780,55 @@
       if (e.target.tagName === 'IMG') e.preventDefault();
     });
 
-    // ============ 星空背景（原生 Canvas 手写） ============
+    // ============ 右下角訪問人數 ============
+    (function visitorCounter() {
+      var el = document.getElementById('visitorCount');
+      if (!el) return;
+
+      var STORAGE_KEY = 'latale_visitor_count';
+      var SESSION_KEY = 'latale_visitor_session';
+      var BASE = 1280; // 基礎初始值，可自行調整
+
+      function readCount() {
+        var n = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+        return isNaN(n) ? BASE : n;
+      }
+
+      function writeCount(n) {
+        try { localStorage.setItem(STORAGE_KEY, String(n)); } catch (e) {}
+      }
+
+      // 同一瀏覽器 session 只計一次
+      var already = false;
+      try { already = sessionStorage.getItem(SESSION_KEY) === '1'; } catch (e) {}
+
+      var count = readCount();
+      if (!already) {
+        count += 1;
+        writeCount(count);
+        try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+      }
+
+      // 數字滾動動畫
+      var start = Math.max(0, count - 12);
+      var dur = 900;
+      var t0 = performance.now();
+
+      function tick(now) {
+        var p = Math.min((now - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(start + (count - start) * eased);
+        el.textContent = val.toLocaleString('en-US');
+        if (p < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = count.toLocaleString('en-US');
+        }
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    // ============ 星空背景（原生 Canvas 手寫） ============
     (function starfield() {
       var canvas = document.getElementById('starfield');
       if (!canvas) return;
@@ -658,7 +839,7 @@
       var rafId = null;
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // 星点数量按屏幕面积计算，控制在合理范围
+      // 星點數量按屏幕面積計算，控制在合理範圍
       function calcStarCount() {
         var area = w * h;
         return Math.min(420, Math.max(120, Math.round(area / 6000)));
@@ -683,12 +864,12 @@
           stars.push({
             x: Math.random() * w,
             y: Math.random() * h,
-            r: Math.random() * 1.4 + 0.3,          // 半径
-            baseAlpha: Math.random() * 0.5 + 0.3,  // 基础亮度
+            r: Math.random() * 1.4 + 0.3,          // 半徑
+            baseAlpha: Math.random() * 0.5 + 0.3,  // 基礎亮度
             twinkleSpeed: Math.random() * 0.02 + 0.005,
             phase: Math.random() * Math.PI * 2,
-            depth: Math.random() * 0.8 + 0.2,      // 视差深度
-            hue: Math.random() < 0.15 ? 220 : 0,   // 少量偏蓝星
+            depth: Math.random() * 0.8 + 0.2,      // 視差深度
+            hue: Math.random() < 0.15 ? 220 : 0,   // 少量偏藍星
             driftX: (Math.random() - 0.5) * 0.06,
             driftY: (Math.random() - 0.5) * 0.06
           });
@@ -701,7 +882,7 @@
         var dt = Math.min(now - lastTime, 50);
         lastTime = now;
 
-        // 深空底色（轻微径向渐变，中心稍亮）
+        // 深空底色（輕微徑向漸變，中心稍亮）
         var grad = ctx.createRadialGradient(w * 0.5, h * 0.35, 0, w * 0.5, h * 0.5, Math.max(w, h) * 0.75);
         grad.addColorStop(0, '#0b1230');
         grad.addColorStop(0.55, '#070b18');
@@ -716,7 +897,7 @@
           if (!reduceMotion) {
             s.x += s.driftX * s.depth;
             s.y += s.driftY * s.depth;
-            // 边界循环
+            // 邊界循環
             if (s.x < -2) s.x = w + 2;
             if (s.x > w + 2) s.x = -2;
             if (s.y < -2) s.y = h + 2;
@@ -731,7 +912,7 @@
             ? 'rgba(170, 190, 255,' + alpha + ')'
             : 'rgba(255, 255, 255,' + alpha + ')';
 
-          // 光晕
+          // 光暈
           if (s.r > 1) {
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.r * 2.6, 0, Math.PI * 2);
@@ -747,7 +928,7 @@
           ctx.fill();
         }
 
-        // 流星（低频触发）
+        // 流星（低頻觸發）
         if (!reduceMotion && Math.random() < 0.003) {
           shootingStars.push({
             x: Math.random() * w * 0.7,
@@ -786,7 +967,7 @@
         rafId = requestAnimationFrame(draw);
       }
 
-      // 页面隐藏时暂停，节省资源
+      // 頁面隱藏時暫停，節省資源
       document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
           if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
